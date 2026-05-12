@@ -11,7 +11,7 @@ function RB_Modals_() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow} className='d-flex'>
         Subscribe
       </Button>
 
