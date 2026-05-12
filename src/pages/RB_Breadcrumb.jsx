@@ -11,17 +11,17 @@ const RbBreadCrumb = () => {
       className="d-flex align-items-center" listProps={{ className: "align-items-center" }} >
 
 
-      <Breadcrumb.Item bsPrefix=" " active className="d-inline-flex align-items-center">
+      <Breadcrumb.Item bsPrefix=" " className="d-inline-flex align-items-center">
         <FcFolder className="me-1" /> Home <span><IoIosArrowForward />
         </span>
       </Breadcrumb.Item>
 
-      <Breadcrumb.Item bsPrefix=" " active className="d-inline-flex align-items-center">
+      <Breadcrumb.Item bsPrefix=" "  className="d-inline-flex align-items-center">
         <FcFolder className="me-1" /> Library<span><IoIosArrowForward />
         </span>
       </Breadcrumb.Item>
 
-      <Breadcrumb.Item bsPrefix=" " active className="d-inline-flex align-items-center">
+      <Breadcrumb.Item bsPrefix=" "  className="d-inline-flex align-items-center">
         <LuFolderCode className="me-1" /> <span>To-Do-List</span>
       </Breadcrumb.Item>
     </Breadcrumb>

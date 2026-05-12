@@ -1,4 +1,4 @@
-import cloudimg from "./../assests/cloud.svg";
+import cloudimg from "./../assets/cloud.svg";
 import { DynamicAvatar } from "./Dynamic";
 
 const Staticprofile_ = () => {

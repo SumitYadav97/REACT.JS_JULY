@@ -76,12 +76,12 @@ function RB_CarouselFade() {
 
       </Carousel>
       <div className="d-flex justify-content-center gap-3 mt-3">
-        <button className="btn btn-primary" onClick={handlePrev}>
+        <Button className="btn btn-primary" onClick={handlePrev}>
           Previous
-        </button>
-        <button className="btn btn-primary" onClick={handleNext}>
+        </Button>
+        <Button className="btn btn-primary" onClick={handleNext}>
           Next
-        </button>
+        </Button>
       </div>
 
     </Container>

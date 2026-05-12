@@ -23,7 +23,7 @@ const TodoList = () => {
 
   const handleAdd = () => {
     if (input.trim() === "") {
-      alert("Please enter something!");
+      alert("enter something!");
       return;
     }
     dispatch({ type: "ADD_ITEM", payload: input });
@@ -78,16 +78,21 @@ const TodoList = () => {
         </ul>
       </div>
 
-      <style>{`.custom-checkbox .form-check-input:checked {
-          background-color: #198754; /* Success Green */
-          border-color: #198754;
-        }.custom-checkbox .form-check-input {
-          border-radius: 50%; /* Makes it a circle */
-          width: 1.2em;
-          height: 1.2em;
-          cursor: pointer;
-        }
-      `}</style>
+      <style>
+        {`
+.custom-checkbox input {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.custom-checkbox input:checked {
+  background-color: #198754;
+  border-color: #198754;
+}
+`}
+      </style>
     </div>
   );
 };

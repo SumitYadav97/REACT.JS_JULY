@@ -148,9 +148,23 @@ const RootLayout = () => {
                   </li>
 
                    <li className="nav-item">
-                    <NavLink to="/RB_Dropdown">
+                    <NavLink to="/RB_Carousel">
                     <FaArrowRight />
                       RB_Carousel
+                    </NavLink>
+
+                  </li>
+                   <li className="nav-item">
+                    <NavLink to="/RB_Modals_">
+                    <FaArrowRight />
+                      RB_Modals_
+                    </NavLink>
+
+                  </li>
+                   <li className="nav-item">
+                    <NavLink to="/NavbarWithOffcanvas">
+                    <FaArrowRight />
+                      NavbarWithOffcanvas
                     </NavLink>
 
                   </li>

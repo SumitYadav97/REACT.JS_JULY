@@ -23,6 +23,9 @@ import RB_Spinners from "./pages/RB_Spinner";
 import RB_Accordion from "./Interactive_Components/Accordion";
 import RB_Dropdown from "./Interactive_Components/RB_Dropdown";
 import Dynamic_EmployeeTable from "./pages/Rbbadge";
+import RB_CarouselFade from "./Interactive_Components/RB_Carousel";
+import RB_Modals_ from "./Interactive_Components/RB_Modals";
+import NavbarWithOffcanvas from "./Interactive_Components/Navbar&offcanvas";
 
 const App = () => {
   return (
@@ -49,6 +52,9 @@ const App = () => {
           <Route path="RB_Accordion" element={<RB_Accordion />} />
           <Route path="RB_Dropdown" element={<RB_Dropdown />} />
           <Route path="Dynamic_EmployeeTable" element={<Dynamic_EmployeeTable />} />
+          <Route path="RB_Carousel" element={<RB_CarouselFade />} />
+          <Route path="RB_Modals_" element={<RB_Modals_ />} />
+          <Route path="NavbarWithOffcanvas" element={<NavbarWithOffcanvas />} />
 
          
         
