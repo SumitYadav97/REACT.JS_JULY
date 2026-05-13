@@ -14,7 +14,7 @@ const RootLayout = () => {
     htmlElement.setAttribute("data-bs-theme", darkMode ? "dark" : "light");
   }, [darkMode]);
 
-  return ( 
+  return (
     <>
       <Container className="text-end">
 
@@ -28,7 +28,7 @@ const RootLayout = () => {
 
       </Container>
 
-      <div className="container-fluid  min-vh-100 p-4">
+      <div className="container-fluid  p-4">
 
         <div className="row g-4">
 
@@ -39,7 +39,7 @@ const RootLayout = () => {
             </div>
             <Accordion defaultActiveKey="0">
               <Accordion.Item >
-                <Accordion.Header>Non-Intractive components</Accordion.Header>
+                <Accordion.Header>Type-1 Component</Accordion.Header>
                 <Accordion.Body className="d-flex">
                   <ul className="nav flex-column gap-2">
                     <li className="nav-item">
@@ -149,7 +149,7 @@ const RootLayout = () => {
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="1">
-                <Accordion.Header>Intractive components</Accordion.Header>
+                <Accordion.Header>Type-2 Component</Accordion.Header>
                 <Accordion.Body>
                   <ul className="nav flex-column gap-2">
                     <li className="nav-item">
@@ -188,6 +188,23 @@ const RootLayout = () => {
                       </NavLink>
 
                     </li>
+
+                    <li className="nav-item">
+                      <NavLink to="/RB_Nav_Tabs">
+                        <FaArrowRight />
+                        RB_Nav_Tabs
+                      </NavLink>
+
+                    </li>
+
+                    <li className="nav-item">
+                      <NavLink to="/RB_Overlay">
+                        <FaArrowRight />
+                        RB_Overlay
+                      </NavLink>
+
+                    </li>
+
                   </ul>
                 </Accordion.Body>
               </Accordion.Item>
