@@ -14,7 +14,7 @@ const RootLayout = () => {
     htmlElement.setAttribute("data-bs-theme", darkMode ? "dark" : "light");
   }, [darkMode]);
 
-  return (
+  return ( 
     <>
       <Container className="text-end">
 
