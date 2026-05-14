@@ -33,11 +33,11 @@ const RootLayout = () => {
         <div className="row g-4">
 
 
-          <nav className="col-md-3">
-            <div className="d-flex justify-content-center">
+          <nav className="col-md-3 ">
+            <div className="d-flex justify-content-center ">
               <Button>Bootstrap  Components</Button>
             </div>
-            <Accordion defaultActiveKey="0">
+            <Accordion defaultActiveKey="0" className="text-start">
               <Accordion.Item >
                 <Accordion.Header>Type-1 Component</Accordion.Header>
                 <Accordion.Body className="d-flex">
@@ -151,7 +151,7 @@ const RootLayout = () => {
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Type-2 Component</Accordion.Header>
                 <Accordion.Body>
-                  <ul className="nav flex-column gap-2">
+                  <ul className="nav flex-column gap-2 text-align-left">
                     <li className="nav-item">
                       <NavLink to="/RB_Accordion">
                         <FaArrowRight />
