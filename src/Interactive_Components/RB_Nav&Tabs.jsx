@@ -35,7 +35,7 @@ const contentInfo = [
   {
     icon: <CurrencyRupee className="me-2 text-primary" size={16} />,
     title: "Estimated Cost",
-    value: "5,80,000",
+    value: "₹5,80,000",
   },
 ];
 
@@ -47,13 +47,13 @@ const RB_Nav_Tabs = () => {
 
         <Nav
           variant="underline"
-          className="gap-4 border-bottom pb-2"
+          className="gap-4 border-bottom "
         >
           {tabItems.map((tab) => (
             <Nav.Item key={tab.key}>
               <Nav.Link
                 eventKey={tab.key}
-                className="fw-semibold"
+                className="fw-bold"
               >
                 {tab.label}
               </Nav.Link>
@@ -95,7 +95,7 @@ const TabContentUI = () => (
           </span>
         </div>
 
-        <span className="text-dark fw-semibold">
+        <span className="text-dark fw-bold">
           {item.value}
         </span>
 
