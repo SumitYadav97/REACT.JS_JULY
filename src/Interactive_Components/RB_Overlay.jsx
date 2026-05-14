@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 
 function RB_Overlay() {
-   
+
     return (
         <>
             {['top', 'right', 'bottom', 'left'].map((placement) => (

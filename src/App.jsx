@@ -26,6 +26,8 @@ import Dynamic_EmployeeTable from "./pages/Rbbadge";
 import RB_CarouselFade from "./Interactive_Components/RB_Carousel";
 import RB_Modals_ from "./Interactive_Components/RB_Modals";
 import NavbarWithOffcanvas from "./Interactive_Components/Navbar&offcanvas";
+import RB_Nav_Tabs from "./Interactive_Components/RB_Nav&Tabs";
+import RB_Overlay from "./Interactive_Components/RB_Overlay";
 
 const App = () => {
   return (
@@ -55,6 +57,9 @@ const App = () => {
           <Route path="RB_Carousel" element={<RB_CarouselFade />} />
           <Route path="RB_Modals_" element={<RB_Modals_ />} />
           <Route path="NavbarWithOffcanvas" element={<NavbarWithOffcanvas />} />
+          <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
+          <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
+          <Route path="RB_Overlay" element={<RB_Overlay />} />
 
          
         

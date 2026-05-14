@@ -17,26 +17,10 @@ const tabItems = [
 ];
 
 const contentInfo = [
-  {
-    icon: <Calendar className="me-2 text-primary" size={16} />,
-    title: "Start Date",
-    value: "01 Jul, 2025",
-  },
-  {
-    icon: <Calendar className="me-2 text-primary" size={16} />,
-    title: "End Date",
-    value: "31 Dec, 2025",
-  },
-  {
-    icon: <Clock className="me-2 text-primary" size={16} />,
-    title: "Estimated Time",
-    value: "5 months",
-  },
-  {
-    icon: <CurrencyRupee className="me-2 text-primary" size={16} />,
-    title: "Estimated Cost",
-    value: "₹5,80,000",
-  },
+  { icon: <Calendar className="me-2 text-primary" size={16} />, title: "Start Date", value: "01 Jul, 2025", },
+  { icon: <Calendar className="me-2 text-primary" size={16} />, title: "End Date", value: "31 Dec, 2025", },
+  { icon: <Clock className="me-2 text-primary" size={16} />, title: "Estimated Time", value: "5 months", },
+  { icon: <CurrencyRupee className="me-2 text-primary" size={16} />, title: "Estimated Cost", value: "₹5,80,000", },
 ];
 
 const RB_Nav_Tabs = () => {
