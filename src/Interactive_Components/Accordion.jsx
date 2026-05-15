@@ -2,6 +2,31 @@ import { useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import { PlusCircle, DashCircle } from "react-bootstrap-icons";
 
+function Customtoggle({ eventKey, title, activeKey, onToggle }) {
+  const active = activeKey === eventKey;
+
+  return (
+    <div
+      onClick={() => onToggle(eventKey)}
+      className="d-flex justify-content-between align-items-center w-100 px-3 py-3"
+      style={{ cursor: "pointer",
+        border: "1px solid #dee2e6",
+        
+      }}
+    >
+      <span className={active ? "text-primary fw-bold" : "fw-bold"}>
+        {title}
+      </span>
+
+      {active ? (
+        <DashCircle className="text-primary fs-5" />
+      ) : (
+        <PlusCircle className="fs-5" />
+      )}
+    </div>
+  );
+}
+
 function RB_Accordion() {
   const [activeKey, setActiveKey] = useState(null);
 
@@ -9,98 +34,50 @@ function RB_Accordion() {
     setActiveKey(activeKey === key ? null : key);
   };
 
+  const Data = [
+    {
+      key: "0",
+      title: "What is the cost of an online course?",
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tempore harum, explicabo dolorum nemo iure voluptates unde ipsum laborum soluta!",
+    },
+    {
+      key: "1",
+      title: "Do I need to visit any physical location?",
+      body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit culpa odio saepe vitae ipsum vel non nemo minima dignissimos dolorem.",
+    },
+    {
+      key: "2",
+      title: "What are the technology Location?",
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit asperiores eveniet a soluta similique. Sint quis sunt minus minima voluptates!",
+    },
+    {
+      key: "3",
+      title: "How can I ask questions or clear doubts?",
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius possimus non modi incidunt laudantium asperiores voluptates vel sunt vitae porro.",
+    },
+  ];
+
   return (
-    <>
-      <Accordion bsPrefix=" " activeKey={activeKey}>
+    <Accordion activeKey={activeKey} className="mt-3 text-start">
+      {Data.map((item) => (
+        <Accordion.Item
+          eventKey={item.key}
+          key={item.key}
+          className="mb-3 border-0" >
+          <Customtoggle
+            eventKey={item.key}
+            title={item.title}
+            activeKey={activeKey}
+            onToggle={handleToggle}/>
 
-        <Accordion.Item eventKey="0">
-          <Accordion.Header onClick={() => handleToggle("0")}>
-            <div className="d-flex w-100 justify-content-between align-items-center">
-              <span className={activeKey === "0" ? "text-primary" : ""}>
-                <b> What is the cost of an online course?</b>
-              </span>
-              {activeKey === "0" ? (
-                <DashCircle className="text-primary" />
-              ) : (
-                <PlusCircle />
-              )}
+          <Accordion.Collapse eventKey={item.key}>
+            <div className="p-3 " >
+              {item.body}
             </div>
-          </Accordion.Header>
-
-          <Accordion.Body >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tempore harum, explicabo dolorum nemo iure voluptates unde ipsum laborum soluta!
-          </Accordion.Body>
+          </Accordion.Collapse>
         </Accordion.Item>
-
-        <br />
-        {/* 2nd Acoordion_section */}
-        <Accordion.Item eventKey="1">
-          <Accordion.Header onClick={() => handleToggle("1")}>
-            <div className="d-flex w-100 justify-content-between align-items-center">
-
-              <span className={activeKey === "1" ? "text-primary" : ""}>
-                <b> Do I need to visit any physical location?</b>
-              </span>
-
-              {activeKey === "1" ? (
-                <DashCircle className="text-primary" />
-              ) : (
-                <PlusCircle />
-              )}
-            </div>
-          </Accordion.Header>
-
-          <Accordion.Body>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </Accordion.Body>
-        </Accordion.Item>
-        <br />
-        {/* 3rd accordion_section */}
-        <Accordion.Item eventKey="2">
-          <Accordion.Header onClick={() => handleToggle("2")}>
-            <div className="d-flex w-100 justify-content-between align-items-center">
-
-              <span className={activeKey === "2" ? "text-primary" : ""}>
-               <b>What are the technology Location?</b>
-              </span>
-
-              {activeKey === "2" ? (
-                <DashCircle className="text-primary" />
-              ) : (
-                <PlusCircle />
-              )}
-            </div>
-          </Accordion.Header>
-
-          <Accordion.Body>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </Accordion.Body>
-        </Accordion.Item>
-        {/* 4th Accordion_section */}
-        <br />
-        <Accordion.Item eventKey="3">
-          <Accordion.Header onClick={() => handleToggle("3")}>
-            <div className="d-flex w-100 justify-content-between align-items-center">
-
-              <span className={activeKey === "3" ? "text-primary" : ""}>
-               <b>How can I ask questions or clear doubts?</b>
-              </span>
-
-              {activeKey === "3" ? (
-                <DashCircle className="text-primary" />
-              ) : (
-                <PlusCircle />
-              )}
-            </div>
-          </Accordion.Header>
-
-          <Accordion.Body>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </Accordion.Body>
-        </Accordion.Item>
-
-      </Accordion>
-    </>
+      ))}
+    </Accordion>
   );
 }
 

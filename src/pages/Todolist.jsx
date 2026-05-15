@@ -80,20 +80,20 @@ const TodoList = () => {
 
       <style>
         {`
-.custom-checkbox input {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  cursor: pointer;
-}
+          .custom-checkbox input {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
 
-.custom-checkbox input:checked {
-  background-color: #198754;
-  border-color: #198754;
-}
-`}
-      </style>
-    </div>
+          .custom-checkbox input:checked {
+            background-color: #198754;
+            border-color: #198754;
+          }
+          `}
+                </style>
+              </div>
   );
 };
 

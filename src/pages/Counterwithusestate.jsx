@@ -42,8 +42,7 @@ const Counterwithusestate = () => {
     <>
       <div>Current value of ( Usestate)count = {count}</div>
 
-
-
+ 
       <Button variant="primary" onClick={handleIncrement} >+1</Button>
       <Button variant="primary" onClick={handleDecrement}>-1</Button>
       <Button variant="primary" onClick={Increment2}>+2</Button>

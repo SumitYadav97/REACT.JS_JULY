@@ -1,9 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { Button, Carousel, Container } from 'react-bootstrap';
-import { ArrowRightCircle, ArrowRightCircleFill } from 'react-bootstrap-icons';
+import { ArrowRightCircle, ArrowRightCircleFill, CheckCircleFill, CircleFill } from 'react-bootstrap-icons';
 import { AiOutlineCaretLeft, AiOutlineCaretRight } from 'react-icons/ai';
-import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md';
+import { BsFillPauseCircleFill } from 'react-icons/bs';
+import { CiCircleInfo } from 'react-icons/ci';
+import { FaCircle, FaRegCircle } from 'react-icons/fa';
+import { GoDotFill } from 'react-icons/go';
+import { ImRadioUnchecked } from 'react-icons/im';
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight, MdOutlineRadioButtonUnchecked, MdRadioButtonChecked } from 'react-icons/md';
 
 function RB_CarouselFade() {
   const [index, setIndex] = useState(0);
@@ -24,11 +29,10 @@ function RB_CarouselFade() {
     <Container>
 
 
-      <Carousel activeIndex={index} onSelect={handleSelect}
-        prevIcon={<AiOutlineCaretLeft />} nextIcon={<AiOutlineCaretRight />
-
-        }>
-
+      <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}
+        prevIcon={<AiOutlineCaretLeft />}
+        nextIcon={<AiOutlineCaretRight />}
+      >
         <Carousel.Item >
 
           <img
@@ -72,10 +76,26 @@ function RB_CarouselFade() {
             <p>Praesent commodo cursus magna.</p>
 
           </Carousel.Caption>
-        </Carousel.Item>
+        </Carousel.Item >
 
       </Carousel>
       <div className="d-flex justify-content-center gap-3 mt-3">
+        {[0, 1, 2].map((item) => (
+          <span
+            key={item}
+            onClick={() => setIndex(item)}
+            style={{ cursor: 'pointer' }}>
+            {index === item ? (
+              <FaCircle />
+            ) : (
+              <FaRegCircle />
+
+            )}
+          </span>
+        ))}
+      </div>
+      <div className="d-flex justify-content-center gap-3 mt-3">
+
         <Button className="btn btn-primary" onClick={handlePrev}>
           Previous
         </Button>
