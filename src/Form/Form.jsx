@@ -1,19 +1,17 @@
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useForm } from 'react-hook-form';
 const ReactHookForm = () => {
-
     const {
-        formState: { errors },
         register,
-        handleSubmit
-    } = useForm();
-
-    const handleOnSubmit = (data) => {
-        console.log(data);
+        handleSubmit,
+        reset,
+        formState: { errors, isSubmitting }
+    } = useForm(); const handleOnSubmit = (data) => {
+        console.log(data)
         toast.success("Form submitted successfully!");
+        reset();
     };
 
     return (
@@ -55,28 +53,26 @@ const ReactHookForm = () => {
                     </Form.Group>
 
                     {/* Age */}
-                    <Form.Group as={Col} md={6} controlId="email">
+                    <Form.Group as={Col} md={6} controlId="age">
                         <Form.Label>Age</Form.Label>
 
-                        <Form.Control type=
-                            "number"
-                            {...register("age"
-                                ,
-                                {
-                                    required: "The age is required."
-                                    ,
-                                    min: {
-                                        value: 18, message: "Age must be greater than 18"
-                                        ,
-                                        max: { value: 50, message: "Age must be less than 50" },
-                                    }
-                                })
-                            } />
-                        <div className=
-                            "text-danger">{errors?.age?.message}</div>
+                        <Form.Control
+                            type="number"
+                            {...register("age", {
+                                required: "The age is required.",
+                                min: {
+                                    value: 18,
+                                    message: "Age must be greater than 18",
+                                },
+                                max: {
+                                    value: 40,
+                                    message: "Age must be less than 40",
+                                },
+                            })}
+                        />
 
                         <div className="text-danger">
-                            {errors?.email?.message}
+                            {errors?.age?.message}
                         </div>
                     </Form.Group>
 
@@ -105,8 +101,139 @@ const ReactHookForm = () => {
                     </Form.Group>
 
                     {/* Phone no */}
-                    <Form.Group as={Col} md={6} controlId="joiningDate">
+                    <Form.Group as={Col} md={6} controlId="phoneNo">
                         <Form.Label>Phone no</Form.Label>
+
+                        <Form.Control
+                            type="tel"
+                            placeholder="Enter phone number"
+                            {...register("phoneNo", {
+                                required: "Phone number is required.",
+                                pattern: {
+                                    value: /^[6-9]\d{9}$/,
+                                    message: "Enter a valid 10-digit phone number",
+                                },
+                            })}
+                        />
+
+                        <div className="text-danger">
+                            {errors?.phoneNo?.message}
+                        </div>
+                    </Form.Group>
+
+
+
+
+
+                    {/* Email Address */}
+                    <Form.Group as={Col} md={6} controlId="Email Address">
+                        <Form.Label>Email Address</Form.Label>
+
+                        <Form.Control type=
+                            "email"
+                            {...register("email",
+                                {
+                                    required: "The email is required.",
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: "Please enter a valid email address",
+                                    }
+                                })
+                            } />
+                        <div className=
+                            "text-danger">{errors?.email?.message}</div>
+                    </Form.Group>
+
+
+                    {/* Country */}
+                    <Form.Group as={Col} md={6}>
+                        <Form.Label>Select Country</Form.Label>
+
+                        <Form.Select {...register("country")}>
+                            <option value="">Select country</option>
+                            <option value="India">India</option>
+                            <option value="USA">USA</option>
+                            <option value="Canada">Canada</option>
+                        </Form.Select>
+                    </Form.Group>
+
+
+                    {/* State */}
+                    <Form.Group as={Col} md={6}>
+                        <Form.Label>Select State</Form.Label>
+
+                        <Form.Select {...register("State")}>
+                            <option value="">Select State</option>
+                            <option value="India">Delhi</option>
+                            <option value="USA">Himachal Pradesh</option>
+                            <option value="Canada">Tamil Nadu</option>
+                        </Form.Select>
+                    </Form.Group>
+
+                    {/*  Select Preferd Cities */}
+                    <Form.Group as={Col} md={6}>
+                        <Form.Label>Select Preferred Cities</Form.Label>
+
+                        <Form.Select
+                            multiple
+                            {...register("cities", {
+                                required: "Please select at least two city",
+                                validate: (value) => {
+                                    return value.length >= 2 || "Select at least two cities";
+                                }
+                            })}
+                        >
+                            <option value="Ahmedabad">Ahmedabad</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Somnath">Somnath</option>
+                        </Form.Select>
+
+                        <div className="text-danger">
+                            {errors?.cities?.message}
+                        </div>
+                    </Form.Group>
+
+                    {/*  Complete Address*/}
+                    <Form.Group as={Col} md={6}>
+                        <Form.Label>Complete Address</Form.Label>
+
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            placeholder="Enter full address"
+                            {...register("address", {
+                                required: "Address is required",
+                            })}
+                        />
+
+                        <div className="text-danger">
+                            {errors?.address?.message}
+                        </div>
+                    </Form.Group>
+
+                    {/* zip code */}
+                    <Form.Group as={Col} md={6}>
+                        <Form.Label>PIN Code</Form.Label>
+
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter PIN code"
+                            {...register("zip", {
+                                required: "PIN code is required",
+                                pattern: {
+                                    value: /^[1-9][0-9]{5}$/,
+                                    message: "Enter a valid 6-digit PIN code",
+                                },
+                            })}
+                        />
+
+                        <div className="text-danger">
+                            {errors?.zip?.message}
+                        </div>
+                    </Form.Group>
+
+                    {/* Joining Date */}
+                    <Form.Group as={Col} md={6}>
+                        <Form.Label>Joining Date</Form.Label>
 
                         <Form.Control
                             type="date"
@@ -117,10 +244,11 @@ const ReactHookForm = () => {
                                     today.setHours(0, 0, 0, 0);
 
                                     const selectedDate = new Date(value);
+                                    selectedDate.setHours(0, 0, 0, 0);
 
                                     return (
-                                        selectedDate < today ||
-                                        "Joining date must be less than today's date"
+                                        selectedDate <= today ||
+                                        "Joining date must be less than or equal to today's date"
                                     );
                                 },
                             })}
@@ -131,37 +259,157 @@ const ReactHookForm = () => {
                         </div>
                     </Form.Group>
 
-                    {/* Country */}
-                    <Form.Group as={Col} md={6} controlId="country">
-                        <Form.Label>Country</Form.Label>
 
-                        <Form.Select
-                            {...register("country", {
-                                required: "Country is required."
+                    {/* Gender */}
+                    <Form.Group as={Col} md={6} className=
+                        "mb-3" controlId=
+                        "gender">
+                        <Form.Label>Gender</Form.Label>
+                        <br />
+                        {["Male"
+                            ,
+                            "Female"
+                            ,
+                            "Transgender"].map((gender, index) => {
+                                return (
+                                    <Form.Check
+                                        key={index} inline label={gender} id={gender}
+                                        type=
+                                        "radio"
+                                        {...register("gender"
+                                            , {
+                                                required: "Please select your gender"
+                                                ,
+                                            })}
+                                    />);
                             })}
-                        >
-                            <option value="">Select country</option>
-                            <option value="India">India</option>
-                            <option value="USA">USA</option>
-                        </Form.Select>
-
-                        <div className="text-danger">
-                            {errors?.country?.message}
-                        </div>
+                        <div className=
+                            "text-danger">{errors?.gender?.message}</div>
                     </Form.Group>
 
+
+                    {/* Hobbies */}
+                    <Form.Group as={Col} md={6} className=
+                        "mb-3" controlId=
+                        "hobby">
+                        <Form.Label>Hobbies</Form.Label>
+                        <br />
+                        {["Drawing"
+                            ,
+                            "Singing"
+                            ,
+                            "Dancing"].map((hobby, index) => {
+                                return (
+                                    <Form.Check
+                                        key={index} inline label={hobby} id={hobby}
+                                        type=
+                                        "checkbox"
+                                        {...register("hobby", {
+                                            required: "Please select at least two hobby",
+                                            validate: (value) => {
+                                                return value.length >= 2 || "Select at least two hobby";
+                                            }
+                                        })} />);
+                            })}
+                        <div className=
+                            "text-danger">{errors?.hobby?.message}</div>
+                    </Form.Group>
+
+                    {/* Profile */}
+                    <Col md={6}>
+                        <Form.Control type=
+                            "file"
+                            {...register("profilePicture"
+                                , {
+                                    required: "Profilepicture is required."
+                                    ,
+                                    validate: {
+                                        acceptedFormats: (value) => {
+                                            if (!value || value.length === 0) return true; // Skip validation if no file is selected
+                                            const file = value[0]; // Assuming single file upload
+                                            const acceptedFormatList = ["image/jpeg"
+                                                ,
+                                                "image/png"
+                                                ,
+                                                "image/gif"];
+                                            return (acceptedFormatList.includes(file.type) || "Only JPEG, PNG, and GIF images are allowed.");
+                                        },
+                                        fileSize: (value) => {
+                                            if (!value || value.length === 0) return true;
+                                            const file = value[0];
+                                            const maxSize = 6 * 1024 * 1024; // 5MB in bytes
+                                            return (file.size <= maxSize || "File size must be less than 6MB.");
+                                        }
+                                    }
+                                })}
+                        />
+                        <div className=
+                            "text-danger">{errors?.profilePicture?.message}</div>
+                    </Col>
+                    {/* Resume */}
+                    <Col md={6}>
+                        <Form.Control type=
+                            "file"
+                            {...register("Resume"
+                                , {
+                                    required: "Resume is required."
+                                    ,
+                                    validate: {
+                                        acceptedFormats: (value) => {
+                                            if (!value || value.length === 0) return true; // Skip validation if no file is selected
+                                            const file = value[0]; // Assuming single file upload
+                                            const acceptedFormatList = ["image/jpeg"
+                                                ,
+                                                "image/png"
+                                                ,
+                                                "image/gif"];
+                                            return (acceptedFormatList.includes(file.type) || "Only JPEG, PNG, and GIF images are allowed.");
+                                        },
+                                        fileSize: (value) => {
+                                            if (!value || value.length === 0) return true;
+                                            const file = value[0];
+                                            const maxSize = 6 * 1024 * 1024; // 6MB in bytes
+                                            return (file.size <= maxSize || "File size must be less than 6MB.");
+                                        }
+                                    }
+                                })}
+                        />
+                        <div className=
+                            "text-danger">{errors?.Resume?.message}</div>
+                    </Col>
+
+                    {/* Terms and Condition */}
+
+                    <Form.Group as={Col} md={6} className='mt-3'>
+                        <Form.Check
+                            type="checkbox"
+                            label="I agree to the Terms & Conditions"
+                            {...register("terms", {
+                                required: "You must accept the Terms & Conditions",
+                            })}
+                        />
+
+                        <div className="text-danger">
+                            {errors?.terms?.message}
+                        </div>
+                    </Form.Group>
                 </Row>
 
-                <Button type="submit">
-                    Submit form
+                <Button type="submit" >Submit
                 </Button>
             </Form>
-
-            {/* Toast Container */}
             <ToastContainer
                 position="top-right"
-                autoClose={3000}
-                theme="colored"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
             />
         </>
     );
