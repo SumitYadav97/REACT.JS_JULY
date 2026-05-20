@@ -28,6 +28,7 @@ import RB_Modals_ from "./Interactive_Components/RB_Modals";
 import NavbarWithOffcanvas from "./Interactive_Components/Navbar&offcanvas";
 import RB_Nav_Tabs from "./Interactive_Components/RB_Nav&Tabs";
 import RB_Overlay from "./Interactive_Components/RB_Overlay";
+import ReactHookForm from "./Form/Form";
 
 const App = () => {
   return (
@@ -60,6 +61,8 @@ const App = () => {
           <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
           <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
           <Route path="RB_Overlay" element={<RB_Overlay />} />
+                    <Route path="ReactHookForm" element={<ReactHookForm />} />
+
 
          
         
