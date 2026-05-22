@@ -1,20 +1,23 @@
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row, Spinner } from 'react-bootstrap';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 const ReactHookForm = () => {
 
     const { register, handleSubmit, reset,
+
+
         formState: { errors, isSubmitting }
     } = useForm({
         defaultValues: {
             firstname: "Sumit",
             lastname: "Yadav",
-            age: 22,
+            age: 20,
             password: "Sumit@123",
             phoneNo: "9586456744",
             email: "sumit@gmail.com",
-            country: "USA",
+            country: "India",
             selectstate: "Delhi",
             cities: ["Delhi", "Ahmedabad"],
             address: "Delhi, India",
@@ -27,9 +30,9 @@ const ReactHookForm = () => {
     });
 
     const handleOnSubmit = (data) => {
-        console.log(data);
-        const toastId = toast("Form submitted successfully...");
 
+        const toastId = toast("Form submitted successfully...");
+        console.log(data)
         reset({
             firstname: "",
             lastname: "",
@@ -55,6 +58,7 @@ const ReactHookForm = () => {
 
     return (
         <>
+            <h1>Basic Form</h1>
             <Form onSubmit={handleSubmit(handleOnSubmit)}>
 
                 <Row className='mb-3'>
@@ -119,22 +123,23 @@ const ReactHookForm = () => {
                     <Form.Group as={Col} md={6} controlId="password">
                         <Form.Label>Password</Form.Label>
 
-                        <Form.Control type=
-                            "password"
-                            {...register("password",
-                                {
-                                    required: "The password is required.",
-                                    validate: (value) => {
-                                        if (!value) return true;
-                                        if (value.includes(" ")) return "Password cannot contain spaces";
-                                        const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>?]/.test(value);
-                                        const hasNumber = /\d/.test(value);
-                                        if (!hasSpecialChar || !hasNumber) {
-                                            return "Password must contain at least one special character and one number.";
-                                        }
-                                        return true;
-                                    },
-                                })} />
+                        <Form.Control
+                            type="password"
+                            {...register("password", {
+                                required: "The password is required.",
+                                minLength: {
+                                    value: 4,
+                                    message: "Password must be at least 4 characters long."
+                                },
+                                maxLength: {
+                                    value: 10,
+                                    message: "You can use a maximum of 10 characters for the password."
+                                },
+                                validate: (value) => {
+                                    return !value.includes(" ") || "Password cannot contain spaces";
+                                }
+                            })}
+                        />
                         <div className=
                             "text-danger">{errors?.password?.message}</div>
                     </Form.Group>
@@ -159,10 +164,6 @@ const ReactHookForm = () => {
                             {errors?.phoneNo?.message}
                         </div>
                     </Form.Group>
-
-
-
-
 
                     {/* Email Address */}
                     <Form.Group as={Col} md={6} controlId="Email Address">
@@ -280,11 +281,9 @@ const ReactHookForm = () => {
                                 required: "Joining date is required.",
                                 validate: (value) => {
                                     const today = new Date();
-                                    today.setHours(0, 0, 0, 0);
-
+                                   
                                     const selectedDate = new Date(value);
-                                    selectedDate.setHours(0, 0, 0, 0);
-
+                                
                                     return (
                                         selectedDate <= today ||
                                         "Joining date must be less than or equal to today's date"
@@ -345,7 +344,7 @@ const ReactHookForm = () => {
                                         type="checkbox"
                                         value={hobby}
                                         {...register("hobby", {
-                                            required: "Please select at least two hobby",
+                                            required: "Please select hobby",
                                             validate: (value) => {
                                                 return value.length >= 2 || "Select at least two hobby";
                                             }
@@ -364,6 +363,7 @@ const ReactHookForm = () => {
                                     required: "Profilepicture is required."
                                     ,
                                     validate: {
+                                        
                                         acceptedFormats: (value) => {
                                             if (!value || value.length === 0) return true; // Skip validation if no file is selected
                                             const file = value[0]; // Assuming single file upload
@@ -377,7 +377,7 @@ const ReactHookForm = () => {
                                         fileSize: (value) => {
                                             if (!value || value.length === 0) return true;
                                             const file = value[0];
-                                            const maxSize = 6 * 1024 * 1024; // 5MB in bytes
+                                            const maxSize = 6 * 1024 * 1024; // 6MB in bytes
                                             return (file.size <= maxSize || "File size must be less than 6MB.");
                                         }
                                     }
@@ -408,8 +408,8 @@ const ReactHookForm = () => {
                                         if (!value || value.length === 0) return true;
 
                                         const file = value[0];
-                                        const maxSize = 6 * 1024 * 1024; // 6MB
-                                        return file.size <= maxSize || "File size must be less than 6MB.";
+                                        const maxSize = 8 * 1024 * 1024; // 8MB
+                                        return file.size <= maxSize || "File size must be less than 8MB.";
                                     }
                                 }
                             })}
@@ -426,6 +426,7 @@ const ReactHookForm = () => {
                             label="I agree to the Terms & Conditions"
                             {...register("terms", {
                                 required: "You must accept the Terms & Conditions",
+
                             })}
                         />
 
@@ -435,13 +436,19 @@ const ReactHookForm = () => {
                     </Form.Group>
                 </Row>
 
-                <Button type="submit" >Submit
+                <Button
+                    type="submit"
+                    variant="primary"
+                    disabled={isSubmitting}
+                    className='d-flex'
+                >
+                    {isSubmitting ? "Loading..." : "Submit"}
                 </Button>
             </Form>
 
             <ToastContainer
                 position="top-right"
-                autoClose={5000}
+                autoClose={3000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick={false}
