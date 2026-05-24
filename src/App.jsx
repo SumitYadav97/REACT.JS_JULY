@@ -14,7 +14,6 @@ import RbBreadCrumb from "./pages/RB_Breadcrumb";
 import RB_Buttons from "./pages/RB_Buttons";
 import Button_Group from "./pages/RB_Buttongroup";
 import Basic_card from "./pages/Cards";
-import RB_images from "./pages/RB_Images";
 import RB_Listgroup from "./pages/RB_Listgroup";
 import RB_Figure from "./pages/RB_Figure";
 import RB_Pagination from "./pages/RB_Pagination";
@@ -28,7 +27,10 @@ import RB_Modals_ from "./Interactive_Components/RB_Modals";
 import NavbarWithOffcanvas from "./Interactive_Components/Navbar&offcanvas";
 import RB_Nav_Tabs from "./Interactive_Components/RB_Nav&Tabs";
 import RB_Overlay from "./Interactive_Components/RB_Overlay";
-import ReactHookForm from "./Form/Form";
+import RHF_YUP from "./Form/RHF_YUP";
+import ReactHookForm from "./Form/RHF_Form";
+import Blog_Listing from "./Blog/Blog_Listing";
+import Blog_Details from "./Blog/Blog_Details";
 
 const App = () => {
   return (
@@ -42,11 +44,10 @@ const App = () => {
           <Route path="profile" element={<Staticprofile_ />} />
           <Route path="todolist" element={<Todolist />} />
           <Route path="table" element={<EmployeeTable />} />
-          <Route path="breadcrumb" element={<RbBreadCrumb/>} />
-          <Route path="buttons" element={<RB_Buttons/>} />
-          <Route path="button_group" element={<Button_Group/>} />
-          <Route path="Basic_card" element={<Basic_card/>} />
-          <Route path="RB_images" element={<RB_images />} />
+          <Route path="breadcrumb" element={<RbBreadCrumb />} />
+          <Route path="buttons" element={<RB_Buttons />} />
+          <Route path="button_group" element={<Button_Group />} />
+          <Route path="Basic_card" element={<Basic_card />} />
           <Route path="RB_Listgroup" element={<RB_Listgroup />} />
           <Route path="RB_Figure" element={<RB_Figure />} />
           <Route path="RB_Pagination" element={<RB_Pagination />} />
@@ -61,11 +62,17 @@ const App = () => {
           <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
           <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
           <Route path="RB_Overlay" element={<RB_Overlay />} />
-                    <Route path="ReactHookForm" element={<ReactHookForm />} />
+          <Route path="ReactHookForm" element={<ReactHookForm />} />
+          <Route path="RHF_YUP" element={<RHF_YUP />} />
+          <Route path="Blog_Listing" element={<Blog_Listing />} />
+          <Route path="Blog_Details" element={<Blog_Details />} />
 
 
-         
-        
+
+
+
+
+
         </Route>
       </Routes>
     </BrowserRouter>
