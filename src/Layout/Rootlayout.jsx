@@ -1,182 +1,161 @@
-import React from "react";
-import { Container, Row, Col, Navbar, Nav, NavDropdown, Form, Button, Card, InputGroup, SplitButton, Dropdown, ButtonGroup, DropdownButton, NavLink, } from "react-bootstrap";
-import { Search } from 'react-bootstrap-icons';
-import { FaHeart, FaShoppingCart } from 'react-icons/fa';
-import { FaShop } from 'react-icons/fa6';
-import Home from '../Pages/Home';
-import Pages from "../Pages/Pages";
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Navbar, Form, Button, InputGroup, Dropdown, Badge, } from "react-bootstrap";
+import './../assets/sass/style.css'
+import { Moon, Search, Sun } from "react-bootstrap-icons";
+import { FaFacebook, FaHeart, FaInstagramSquare, FaPinterest, FaShoppingCart } from "react-icons/fa";
+import { NavLink, Outlet } from "react-router-dom";
+import { IoLogoTwitter } from "react-icons/io";
 
 const RootLayout = () => {
+
+
   return (
     <>
-      <Container fluid className="p-0">
-        {/* HEADER */}
-        <Navbar bg="light" className="py-3 shadow-sm">
-          <Container fluid>
-            <Navbar.Brand href="#">
-              <img
-                src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/logo.png"
-                alt="Logo"
-              />
-            </Navbar.Brand>
+      {/* HEADER */}
+      <Container fluid className="text-center">
+        <Navbar bg="light">
 
-            <InputGroup style={{ width: "500px" }}>
+          <Navbar.Brand>
+            <img
+              src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/logo.png"
+              alt="Logo"
+
+              style={{ width: "150px" }}
+            />
+          </Navbar.Brand>
+
+          <div className="text-center">
+            <InputGroup>
               <Form.Control
-                placeholder="Search..."
-                style={{ borderRadius: "30px" }}
+                placeholder="Search... "
+                style={{ borderRadius: "30px", width: "350px", marginLeft: "200px" }}
               />
             </InputGroup>
+          </div>
 
-            <Button variant="outline-dark">
-              Search
-            </Button>
-
-            <FaHeart size={20} className="ms-4" />
-            <FaShoppingCart size={20} className="ms-3" />
-          </Container>
+          <NavLink
+            to="/Wishlist"
+            className="text-dark "
+            style={{ marginLeft: "100px" }}
+          >
+            <FaHeart size={22} />
+          </NavLink>
         </Navbar>
-
-        {/* Navigation Row  */}
-        <Row className="justify-content-center gap-2 " >
-          <Col xs="auto" >
-            <Dropdown >
-              <Dropdown.Toggle
-                as="span"
-                bsPrefix=" "
-                className="text-muted"
-                >
-                <NavLink
-                  to="/Home"
-                  className="text-decoration-none text-muted"
-                >
-                  HOME
-                </NavLink>
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#action/3.1">Action</Dropdown.Item>
-                <Dropdown.Item href="#action/3.2">
-                  Another action
-                </Dropdown.Item>
-                <Dropdown.Item href="#action/3.3">
-                  Something
-                </Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item href="#action/3.4">
-                  Separated link
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-
-        <Col xs="auto">
-  <NavLink
-    to="/Pages"
-    className="text-muted text-decoration-none"
-  >
-    PAGES
-  </NavLink>
-</Col>
-
-
-          <Col xs="auto">
-            <Dropdown>
-              <Dropdown.Toggle
-                as="span"
-                bsPrefix=" "
-                className="text-muted"
-                style={{ cursor: "pointer" }}
-              >
-                SHOP
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#action/3.1">Action</Dropdown.Item>
-                <Dropdown.Item href="#action/3.2">
-                  Another action
-                </Dropdown.Item>
-                <Dropdown.Item href="#action/3.3">
-                  Something
-                </Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item href="#action/3.4">
-                  Separated link
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-          <Col xs="auto" >
-            <NavLink to='#'>Contact</NavLink>
-          </Col>
-        </Row>
-
-
-        {/* Main */}
-        <div className="mt-3"><Home /></div>
-
-        {/* Pages */}
-         <div className="mt-3"><Pages /></div>
+      </Container>
 
 
 
+      {/* NAVIGATION */}
+      <div className="d-flex flex-wrap justify-content-center gap-4 py-3 border-bottom">
+        <NavLink to="/home" className="text-decoration-none text-dark">
+          HOME
+        </NavLink>
 
-        {/* FOOTER */}
-        <footer className="bg-dark text-light pt-5 pb-3">
-          <Container>
-            <Row className="g-4">
-              <Col lg={3} md={6}>
-                <h5>My Account</h5>
+        <NavLink to="/Shop" className="text-decoration-none text-dark">
+          SHOP
+        </NavLink>
 
-                <ul className="list-unstyled">
-                  <li>My Account</li>
-                  <li>Checkout</li>
-                  <li>Wishlist</li>
-                  <li>Shopping Cart</li>
-                </ul>
-              </Col>
+        <Dropdown>
+          <Dropdown.Toggle as="span" bsPrefix=" " style={{ cursor: "pointer" }}>
+            PRODUCT
+          </Dropdown.Toggle>
 
-              <Col lg={3} md={6}>
-                <h5>Quick Links</h5>
+          <Dropdown.Menu>
+            <Dropdown.Item as={NavLink} to="/Product">
+              Product1
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
-                <ul className="list-unstyled">
-                  <li>Store Location</li>
-                  <li>Orders Tracking</li>
-                  <li>FAQs</li>
-                </ul>
-              </Col>
+        <NavLink to="/Checkout" className="text-decoration-none text-dark">
+          CHECKOUT
+        </NavLink>
+      </div>
+      {/* outlet */}
+      <div className="mt-3">
+        <Outlet />
+      </div>
 
-              <Col lg={3} md={6}>
-                <h5>Information</h5>
 
-                <ul className="list-unstyled">
-                  <li>About Us</li>
-                  <li>Privacy Policy</li>
-                  <li>Terms & Conditions</li>
-                </ul>
-              </Col>
+{/* logos */}
+ <Container>
+        <div className='d-flex justify-content-between align-items-center mt-5 '>
+          <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/1.png" alt="" /></span>
+          <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/2.png" alt="" /></span>
+          <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/3.png" alt="" /></span>
+          <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/4.png" alt="" /></span>
+          <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/5.png" alt="" /></span>
+          <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/5.png" alt="" /></span>
+        </div>
+      </Container>
+      {/* FOOTER */}
+      <footer className="bg-dark text-light pt-5 pb-3 mt-5">
+        <Container>
+          <Row>
+            <Col md={3}>
+              <h5>My Account</h5>
+              <ul className="list-unstyled text-secondary">
+                <li>My Account</li>
+                <li>Contact</li>
+                <li>Checkout</li>
+                <li>Wishlist</li>
+                <li>Shopping Cart</li>
+              </ul>
+            </Col>
 
-              <Col lg={3} md={6}>
-                <h5>Contact</h5>
+            <Col md={3}>
+              <h5>Quick Links</h5>
+              <ul className="list-unstyled text-secondary">
+                <li>Store Location</li>
+                <li>Orders Tracking</li>
+                <li>FAQs</li>
+              </ul>
+            </Col>
 
-                <p>Brooklyn, New York, United States</p>
+            <Col md={3}>
+              <h5>Information</h5>
+              <ul className="list-unstyled text-secondary">
+                <li>About Us</li>
+                <li>Privacy Policy</li>
+                <li>Terms & Conditions</li>
+              </ul>
+            </Col>
+
+            <Col md={3} >
+              <h5>Contact</h5>
+              <span className="text-secondary">
+                <p>Brooklyn, New York</p>
                 <p>+0123-456789</p>
                 <p>example@example.com</p>
-              </Col>
-            </Row>
+              </span>
+            </Col>
+          </Row>
 
-            <hr className="border-light" />
+          <hr />
+          <Row>
+            <Col md={6}>
+              <div className="text-start text-secondary">
+                <p className="mb-0">© 2026 - Just For You</p>
+              </div>
 
-            <div className="text-center">
-              <p className="mb-0">
-                © 2026 - Just For You
-              </p>
-            </div>
-          </Container>
-        </footer>
-      </Container>
+            </Col>
+            <Col md={6}>
+              <div className=' d-flex mt-3 gap-2'>
+
+                <span><FaFacebook /></span>
+                <span><IoLogoTwitter /> </span>
+                <span><FaPinterest /></span>
+                <span><FaInstagramSquare /></span>
+              </div>
+
+            </Col>
+          </Row>
+
+        </Container>
+      </footer>
+
     </>
-
   );
-}
+};
 
 export default RootLayout;
