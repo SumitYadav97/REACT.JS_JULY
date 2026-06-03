@@ -111,7 +111,7 @@ const Shop_ = () => {
                 <span>XXL</span>
               </div>
             </div>
-          </Col>
+          </Col> 
           <Col md={3} >
             <Card className='mt-5'>
               <Card.Img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/12.png" />
