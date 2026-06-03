@@ -146,10 +146,12 @@ const ProductDetail = () => {
                 <h3><b>Realted products</b></h3>
             </div>
             {/* Carousel section */}
+            
             <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
 
                 {/*Carousel */}
                 <Carousel.Item>
+                    
                     <Row>
                         <Col md={3}>
                             <Card>
@@ -225,15 +227,7 @@ const ProductDetail = () => {
                 </Carousel.Item>
 
             </Carousel>
-            <div className='d-flex justify-content-between align-items-center mt-5'>
-                <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/1.png" alt="" /></span>
-                  <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/2.png" alt="" /></span>
-                    <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/3.png" alt="" /></span>
-                      <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/4.png" alt="" /></span>
-                        <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/5.png" alt="" /></span>
-                          <span><img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/brand-logo/5.png" alt="" /></span>
-            </div>
-
+            
         </>
     )
 }

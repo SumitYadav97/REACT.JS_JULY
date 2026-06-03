@@ -1,3 +1,4 @@
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import { Button, Card, Carousel, Col, Container, Dropdown, Form, InputGroup, Navbar, NavLink, Row } from 'react-bootstrap';
@@ -12,23 +13,38 @@ import { ImRadioUnchecked } from 'react-icons/im';
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight, MdOutlineRadioButtonUnchecked, MdRadioButtonChecked } from 'react-icons/md';
 function Home() {
   const [index, setIndex] = useState(0);
-
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
   const [products, setProducts] = useState([]);
-
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch('https://dummyjson.com/products')
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products))
-
+    axios.get('https://dummyjson.com/products')
+      .then((response) => {
+        setProducts(response.data.products);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      });
   }, []);
 
+  if (loading) {
+    return <h2 className='text-center text-info'>Loading Your Products</h2>;
+  }
 
-
+  if (error) {
+    return <h2 className='text-center text-danger'>{error}</h2>;
+  }
   return (
+
     <>
+
       <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}
         prevIcon={<CiSquareChevLeft />
         }
@@ -127,6 +143,7 @@ function Home() {
               </Card>
             </Col>
           ))}
+
         </Row>
       </Container>
       <Container>
@@ -159,7 +176,7 @@ function Home() {
       <div className='mt-3  text-center '>
         <h1 > <b>latest news</b></h1>
       </div>
-     
+
 
 
     </>
