@@ -7,7 +7,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 function RB_Listgroup() {
     return (
-        <ListGroup>
+        <ListGroup> 
             <ListGroup.Item><FaFacebook /> Facebook <span style={{marginLeft:'300px'}}> <b>20%</b></span></ListGroup.Item>
             <ListGroup.Item><FaInstagram /> Instagram  <span style={{marginLeft:'300px'}}><b>20%</b></span></ListGroup.Item>
             <ListGroup.Item><FaYoutube />Youtube  <span style={{marginLeft:'315px'}}><b>20%</b></span></ListGroup.Item>

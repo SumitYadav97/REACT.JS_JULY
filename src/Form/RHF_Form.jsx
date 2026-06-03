@@ -33,7 +33,7 @@ const ReactHookForm = () => {
 
         const toastId = toast("Form submitted successfully...");
         console.log(data)
-        reset({
+        reset({ 
             firstname: "",
             lastname: "",
             age: "",

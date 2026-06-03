@@ -11,7 +11,7 @@ const Counterwithusestate = () => {
       return;
     }
     setCount(count + 1); 
-  }; 
+  };  
   const Increment2 = () => {
     if (count >= 9) {
       alert("You can’t increase value above 10");

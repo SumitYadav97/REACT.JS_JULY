@@ -12,7 +12,7 @@ const employees = [
     { name: "Evan Walter", dept: "Support", icon: "bi-telephone", salary: "$55,000", date: "Sep 5, 2024", status: "NEGOTIATING", empType: "Full-Time" },
     { name: "Julien Saint", dept: "Design", icon: "bi-pen", salary: "$87,000", date: "Sep 11, 2024", status: "OVERDUE", empType: "Full-Time" },
 ];
-
+ 
 function getBadgeVariant(status) {
     switch (status) {
         case "PENDING": return "primary";

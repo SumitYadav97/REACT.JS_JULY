@@ -235,9 +235,7 @@ const RootLayout = () => {
                   
                 </Accordion.Body>
               </Accordion.Item>
-            </Accordion>
-
-
+            </Accordion> 
               <Accordion  defaultActiveKey="3" >
               <Accordion.Item eventKey="0">
                 <Accordion.Header >Blog</Accordion.Header>

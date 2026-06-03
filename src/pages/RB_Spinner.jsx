@@ -9,7 +9,7 @@ function RB_Spinners() {
     const handleStop = () => setLoading(false);
 
     return (
-        <div>
+        <div> 
             <div style={{ marginTop: "10px" }}>
                 <Button variant="success" onClick={handleStart} disabled={loading}
                     style={{ marginRight: "10px", minWidth: "110px" }}>

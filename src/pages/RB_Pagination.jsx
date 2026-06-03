@@ -10,8 +10,6 @@ function RB_Pagination() {
 
     const createPageItems = () => {
         let items = [];
-
-
         let startPage = Math.max(1, activePage - Math.floor(MAX_VISIBLE_PAGES / 2));
         let endPage = Math.min(TOTAL_PAGES, startPage + MAX_VISIBLE_PAGES - 1);
 

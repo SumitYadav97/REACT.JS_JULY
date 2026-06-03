@@ -11,7 +11,7 @@ const DynamicProfileCard = ({ name, role, desc, img }) => {
                 <p className="fw-bold">{role}</p>
                 <p className="card-text">{desc}</p>
             </div>
-
+ 
         </div>
     );
 };

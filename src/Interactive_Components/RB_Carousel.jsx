@@ -9,7 +9,7 @@ import { FaCircle, FaRegCircle } from 'react-icons/fa';
 import { GoDotFill } from 'react-icons/go';
 import { ImRadioUnchecked } from 'react-icons/im';
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight, MdOutlineRadioButtonUnchecked, MdRadioButtonChecked } from 'react-icons/md';
-
+ 
 function RB_CarouselFade() {
   const [index, setIndex] = useState(0);
 

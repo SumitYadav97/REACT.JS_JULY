@@ -2,7 +2,7 @@ import { OverlayTrigger, Tooltip, Popover, Button } from 'react-bootstrap';
 
 function RB_Overlay() {
     return (
-        <>
+        <> 
             {/* Popovers */}
             <div className="d-flex gap-3 flex-wrap">
                 {['top', 'right', 'bottom', 'left'].map((placement) => (

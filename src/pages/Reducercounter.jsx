@@ -10,7 +10,7 @@ const reducer = (state, action) => {
         return state;
       }
       return state + action.value;
-
+ 
     case "decrement":
       if (state - action.value < 0) {
         alert("You can’t decrease value below 0");

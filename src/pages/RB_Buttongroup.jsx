@@ -12,7 +12,7 @@ const Button_Group = () => {
         <Button onClick={() => setAlign("left")}>
           Left
         </Button>
-
+ 
         <Button onClick={() => setAlign("center")}>
           Center
         </Button>

@@ -12,7 +12,7 @@ const RB_Figure = () => {
           src={MyScreenshot}
           style={{ borderRadius: "8px" }}
         />
-
+ 
         <Figure.Caption >
           <h6 className='d-flex'> Image Resource : Google.com
           </h6>

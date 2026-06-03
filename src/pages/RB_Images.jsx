@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import "./../Css/Images.css"
 function RB_images() {
     return (
-        <Container>
+        <Container> 
             <Row>
                 <Col xs={6} md={4}>
                     <h3>Avatar With Name</h3>

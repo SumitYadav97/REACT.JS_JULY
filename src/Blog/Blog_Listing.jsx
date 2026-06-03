@@ -6,7 +6,7 @@ const Blog_Listing = () => {
   return (
     <div>
       <h1>Blog</h1>
-
+ 
       <Container>
         <Row>
           {BlogData.map((blog) => {

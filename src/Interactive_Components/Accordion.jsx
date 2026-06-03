@@ -5,7 +5,7 @@ import { PlusCircle, DashCircle } from "react-bootstrap-icons";
 function Customtoggle({ eventKey, title, activeKey, onToggle }) {
   const active = activeKey === eventKey;
 
-  return (
+  return ( 
     <div
       onClick={() => onToggle(eventKey)}
       className="d-flex justify-content-between align-items-center w-100 px-3 py-3"

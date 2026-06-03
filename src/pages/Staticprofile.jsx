@@ -13,7 +13,7 @@ const Staticprofile_ = () => {
         <p className="card-text">
           I am vengeance. I am the night. I am Batman.
         </p>
-      </div>
+      </div> 
 
     </div>   
   );

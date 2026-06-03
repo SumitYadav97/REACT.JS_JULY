@@ -8,7 +8,7 @@ function Progress() {
 
   const handleIncrease = () => {
     setValue(prev => Math.min(prev + 5, 100));
-  };
+  }; 
   const decrease = () => {
     setValue(prev => Math.max(prev - 5, 0));
   };

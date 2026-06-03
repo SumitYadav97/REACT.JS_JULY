@@ -7,7 +7,7 @@ import {
   Clock,
   CurrencyRupee,
 } from "react-bootstrap-icons";
-
+ 
 const tabItems = [
   { key: "overview", label: "Overview" },
   { key: "scope", label: "Project Scope" },

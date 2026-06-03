@@ -14,7 +14,7 @@ export const DynamicAvatar = ({ img }) => {
                     height: "100px",
                     border:"50px"
                 }}
-            />
+            /> 
         </div>
     );
 };

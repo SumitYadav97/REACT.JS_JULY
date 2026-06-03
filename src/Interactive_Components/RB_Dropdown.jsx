@@ -9,7 +9,7 @@ function RB_Dropdown() {
     const [show, setShow] = useState(true);
 
     return (
-        <>
+        <> 
             {/* First section */}
             <Dropdown className='text-start'>
                 <Dropdown.Toggle variant="primary">

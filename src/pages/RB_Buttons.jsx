@@ -7,7 +7,7 @@ const RB_Buttons = () => {
     const [italic, setItalic] = useState(false);
     const [underline, setUnderline] = useState(false);
 
-    return (
+    return ( 
         <div className="p-4">
             <h2 className='d-flex'>BUTTON STYLES</h2>
             <div className='d-flex gap-2' >

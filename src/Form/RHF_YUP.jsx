@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import * as yup from 'yup';
 
-const schema = yup.object().shape({
-
+const schema = yup.object().shape({ 
+  
     firstname:
         yup.string().required("Please enter firstname"),
     Lastname:

@@ -11,7 +11,7 @@ function todoReducer(state, action) {
     case "COMPLETED_ITEM":
       return state.map((item) =>
         item.id === action.payload ? { ...item, completed: !item.completed } : item
-      );
+      ); 
     default:
       return state;
   }

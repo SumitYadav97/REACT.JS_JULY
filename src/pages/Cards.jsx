@@ -8,7 +8,7 @@ function Basic_card() {
         <div style={{textAlign:"left"}}>Blutooth Headphones</div>
       <Card.Img variant="top" src="https://th.bing.com/th/id/OIP.D40sayhjKVxAF3HPZkVz5QHaE8?w=282&h=188&c=7&r=0&o=7&pid=1.7&rm=3" />
       <Card.Body>
-        <Card.Title ></Card.Title>
+        <Card.Title ></Card.Title> 
         <Card.Text  style={{display:"flex"}}>Noise Airwave Max 6 Wireless Bluetooth Headphones Over-Ear Noise Cancelling Headphones (Carbon Black)
            
       
