@@ -110,7 +110,7 @@ const Shop_ = () => {
                 <span>XL</span>
                 <span>XXL</span>
               </div>
-            </div> 
+            </div>  
           </Col>  
           <Col md={3} >
             <Card className='mt-5'>
