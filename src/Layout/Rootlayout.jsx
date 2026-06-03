@@ -73,7 +73,7 @@ const RootLayout = () => {
       </div>
       {/* outlet */}
       <div className="mt-3">
-        <Outlet />
+        <Outlet /> 
       </div>
 
 
