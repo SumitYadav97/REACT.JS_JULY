@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { IoSunny } from "react-icons/io5";
 
 const RootLayout = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   useEffect(() => {
     const htmlElement = document.querySelector("html");
     htmlElement.setAttribute("data-bs-theme", darkMode ? "dark" : "light");
@@ -34,7 +34,7 @@ const RootLayout = () => {
 
 
           <nav className="col-md-3 ">
-            <div className="d-flex justify-content-center ">
+            <div className="d-flex ">
               <Button>Bootstrap  Components</Button>
             </div>
             <Accordion defaultActiveKey="0" className="text-start">
@@ -206,12 +206,65 @@ const RootLayout = () => {
                     </li>
 
                   </ul>
+
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+
+            <Accordion defaultActiveKey="2" >
+              <Accordion.Item eventKey="0">
+                <Accordion.Header >Form</Accordion.Header>
+                <Accordion.Body>
+                  <ul className="text-start">
+                    <li className="nav-item">
+                      <NavLink to="/ReactHookForm">
+                        <FaArrowRight />
+                        RHF_Basic_Form
+                      </NavLink>
+
+                    </li>
+
+                     <li className="nav-item">
+                      <NavLink to="/RHF_YUP">
+                        <FaArrowRight />
+                        RHF_yup_Form
+                      </NavLink>
+
+                    </li>
+                  </ul>
+                  
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
 
 
+              <Accordion  defaultActiveKey="3" >
+              <Accordion.Item eventKey="0">
+                <Accordion.Header >Blog</Accordion.Header>
+                <Accordion.Body>
+                  <ul  className="text-start">
+                    <li  className="nav-item">
+                      <NavLink to="/Blog_Listing">
+                        <FaArrowRight />
+                      Blog Listing
+                      </NavLink>
 
+                    </li>
+
+                     <li className="nav-item">
+                      <NavLink to="/Blog_Details">
+                        <FaArrowRight />
+                        Blog Details
+                      </NavLink>
+
+                    </li>
+                   
+                  </ul>
+                  
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            
           </nav>
           <Col>
             <main >
