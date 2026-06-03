@@ -10,7 +10,7 @@ import "./sass/style.scss";
 import './css/style.css'
 
 
-function App() {
+function App() { 
   return (
     <BrowserRouter>
       <Routes>
