@@ -8,20 +8,24 @@ import Checkout from "./pages/Checkout";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./sass/style.scss";
 import './css/style.css'
+import ProductRootlayout from "./layout/ProductRoot";
 
 
-function App() { 
+function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
-          <Route path="Shop" element={<Shop_ />} />
-          <Route path="Product" element={<ProductDetail />} />
-          <Route path="Checkout" element={<Checkout />} />
+          <Route path="shop" element={<Shop_ />} />
 
+          <Route path="product" element={<ProductRootlayout />}>
+            <Route index element={<ProductDetail />} />
+            <Route path=":category" element={<ProductDetail />} />
+          </Route>
 
+          <Route path="checkout" element={<Checkout />} />
         </Route>
       </Routes>
     </BrowserRouter>

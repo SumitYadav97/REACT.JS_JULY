@@ -15,7 +15,7 @@ import { useLocation, useParams } from 'react-router-dom'
 const ProductDetail = () => {
 
     const [index, setIndex] = useState(0);
-   const param = useParams()
+    const param = useParams()
     const location = useLocation()
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
@@ -25,24 +25,30 @@ const ProductDetail = () => {
     const [loading, setLoading] = useState(true);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
-       const getProducts = async () => {
-        try {
-            //const response = await getAllProducts()
-            const response = await getProductsByCategory(param.category)
-            setProducts(response.data.products)
-        } catch (error) {
-            if (error.response.status === 404) {
-                setError("Invalid URL or endpoint not found")
-            } else {
-                setError(error.message)
-            }
-        } finally {
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000)
-        }
-    }
+   useEffect(() => {
+    setLoading(true);
 
+    api.get('/products')
+        .then((response) => {
+            setProducts(response.data.products);
+
+            const uniqueCategories = [
+                ...new Set(
+                    response.data.products.map(
+                        (product) => product.category
+                    )
+                )
+            ];
+
+            setCategories(uniqueCategories);
+        })
+        .catch((error) => {
+            setError(error.message);
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+}, []);
     return (
         <>
 
@@ -60,26 +66,56 @@ const ProductDetail = () => {
 
             <Row className="mt-5">
 
-                {/* Left Sidebar */}
-                <Col md={3}>
-                    <h6>Categories</h6>
+    <Col md={3}>
+        <h6>Categories</h6>
 
-                    <ListGroup>
-                        <ListGroup.Item
-                            onClick={() => setSelectedCategory("")}
-                            style={{ cursor: "pointer" }}
-                        >
-                            All Products
-                        </ListGroup.Item>
+        <ListGroup>
+            <ListGroup.Item>
+                <NavLink
+                    to="/product"
+                    className="text-decoration-none text-dark"
+                >
+                    All Products
+                </NavLink>
+            </ListGroup.Item>
 
-                        {categories?.map((category) => (
-                            <ListGroup.Item key={category.slug} >
-                                <ArrowRight />{category}
-                                <NavLink to={category.slug}></NavLink>
-                            </ListGroup.Item>
-                        ))}
-                    </ListGroup>
+            {categories.map((category) => (
+                <ListGroup.Item key={category}>
+                    <NavLink
+                        to={`/product/${category}`}
+                        className="text-decoration-none text-dark"
+                    >
+                        <ArrowRight /> {category}
+                    </NavLink>
+                </ListGroup.Item>
+            ))}
+        </ListGroup>
+    </Col>
+
+    <Col md={9}>
+        <Row>
+            {products.map((product) => (
+                <Col md={4} key={product.id} className="mb-4">
+                    <Card>
+                        <Card.Img
+                            src={product.thumbnail}
+                            style={{
+                                height: "250px",
+                                objectFit: "cover"
+                            }}
+                        />
+                        <Card.Body>
+                            <Card.Title>{product.title}</Card.Title>
+                            <Card.Text>
+                                ${product.price}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
                 </Col>
+            ))}
+        </Row>
+    </Col>
+
 
                 {/* Right Products */}
                 <Col md={9}>
