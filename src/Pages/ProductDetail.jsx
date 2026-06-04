@@ -1,34 +1,48 @@
-import React, { useState } from 'react'
-import { Button, Card, CardGroup, Carousel, Col, Container, Row } from 'react-bootstrap'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Button, Card, CardGroup, Carousel, Col, Container, ListGroup, Row } from 'react-bootstrap'
 import { CiHeart, CiSquareChevLeft, CiSquareChevRight } from 'react-icons/ci'
 import { FaFacebook, FaHeart, FaInstagramSquare, FaPinterest } from 'react-icons/fa'
 import { IoLogoTwitter } from 'react-icons/io'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { RiStarSLine } from 'react-icons/ri'
 import { NavLink } from 'react-router-dom'
+import { api, getProductsCategory } from '../api/Service'
+import { ArrowRight } from 'react-bootstrap-icons'
+import { useLocation, useParams } from 'react-router-dom'
+
 
 const ProductDetail = () => {
-    const [count, setCount] = useState(0);
-    const handleIncrement = () => {
-        if (count >= 10) {
-            alert("Maximum Amount Reached");
-            return;
-        }
-        setCount(count + 1);
-    };
-    const handleDecrement = () => {
-        if (count <= 0) {
-            alert("You can’t decrease value below 0 ( zero )");
-            return;
-        }
-        setCount(count - 1);
-    };
-    const [index, setIndex] = useState(0);
 
+    const [index, setIndex] = useState(0);
+   const param = useParams()
+    const location = useLocation()
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
     const [products, setProducts] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("");
+       const getProducts = async () => {
+        try {
+            //const response = await getAllProducts()
+            const response = await getProductsByCategory(param.category)
+            setProducts(response.data.products)
+        } catch (error) {
+            if (error.response.status === 404) {
+                setError("Invalid URL or endpoint not found")
+            } else {
+                setError(error.message)
+            }
+        } finally {
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000)
+        }
+    }
+
     return (
         <>
 
@@ -44,93 +58,54 @@ const ProductDetail = () => {
                 </div>
             </div>
 
+            <Row className="mt-5">
 
+                {/* Left Sidebar */}
+                <Col md={3}>
+                    <h6>Categories</h6>
 
-            <Row className='mt-5'>
-                <Col md={2} >
-                    <Card>
-                        <img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/4.png" alt="Rose" style={{ height: "150px", width: "150px" }} />
-                    </Card>
-                    <Card >
-                        <img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/3.png" alt="Rose" style={{ height: "150px", width: "150px" }} />
+                    <ListGroup>
+                        <ListGroup.Item
+                            onClick={() => setSelectedCategory("")}
+                            style={{ cursor: "pointer" }}
+                        >
+                            All Products
+                        </ListGroup.Item>
 
-                    </Card>
-                    <Card >
-                        <img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/1.png" alt="Rose" style={{ height: "150px", width: "150px" }} />
-                    </Card>
-                </Col >
-                {/* col-2 */}
-                <Col md={4}>
-                    <Card className='me-5'>
-                        <img
-                            src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/1.png"
-                            alt="Rose"
-                            className="img-fluid"
-                        />
-                    </Card>
+                        {categories?.map((category) => (
+                            <ListGroup.Item key={category.slug} >
+                                <ArrowRight />{category}
+                                <NavLink to={category.slug}></NavLink>
+                            </ListGroup.Item>
+                        ))}
+                    </ListGroup>
                 </Col>
 
-                <Col md={6} className="text-start">
-                    <h3 className=" ms-3 " >Pink Flower Tree Red</h3>
+                {/* Right Products */}
+                <Col md={9}>
+                    <Row>
+                        {products.map(product => (
+                            <Col md={4} className="mb-4" key={product.id}>
+                                <Card>
+                                    <Card.Img
+                                        variant="top"
+                                        src={product.thumbnail}
+                                        style={{
+                                            height: "250px",
+                                            objectFit: "cover"
+                                        }}
+                                    />
+                                    <Card.Body>
+                                        <Card.Title>{product.title}</Card.Title>
 
-                    <div className="text-start">
-                        <div className="d-flex ms-5">
-                            <h3 className=" me-3 " >$49.00</h3>
-                            <h3 className=" text-muted text-decoration-line-through">$65.00</h3>
-                            <p className='text-warning' style={{ marginLeft: "10px" }}> <h5><RiStarSLine /><RiStarSLine /> <RiStarSLine /> <RiStarSLine /> <RiStarSLine /></h5>
-                            </p>
-                            <p className='text-warning' style={{ marginLeft: "10px" }}> <h6>(95 Reviews)</h6></p>
-                        </div>
-                        <div>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio inventore consequatur possimus non, praesentium et quas, culpa, sint quam facilis debitis.
-                        </div>
-                        <div className='mt-3'>
-                            <b>Color</b>
-
-                        </div>
-
-                        <div className="d-flex gap-2">
-                            <div className="bg-primary rounded-circle" style={{ width: "30px", height: "30px" }} />
-                            <div className="bg-danger rounded-circle" style={{ width: "30px", height: "30px" }} />
-                            <div className="bg-info rounded-circle" style={{ width: "30px", height: "30px" }} />
-                            <div className="bg-success rounded-circle" style={{ width: "30px", height: "30px" }} />
-                            <div className="bg-warning rounded-circle" style={{ width: "30px", height: "30px" }} />
-                        </div>
-                        <div className='mt-5'>Size</div>
-                    </div>
-                    <div className="d-flex gap-3 text-muted">
-                        <span>S</span>
-                        <span>M</span>
-                        <span>L</span>
-                        <span>XL</span>
-                        <span>XXL</span>
-                    </div>
-                    <div>
-
-
-                        <div className="d-flex  gap-2 mt-3">
-                            <Button variant="light" onClick={handleDecrement}>
-                                -
-                            </Button>
-
-                            <span className='mt-2'>{count}</span>
-
-                            <Button variant="light" onClick={handleIncrement}>
-                                +
-                            </Button>
-                            <span>
-                                <Button variant='danger'>Add to cart</Button>
-                                <span className='ms-3'><CiHeart size={20} /></span>
-                            </span>
-                        </div>
-                        <div className=' d-flex mt-3 gap-2'>
-                            <span>Share</span>
-                            <span><FaFacebook /></span>
-                            <span><IoLogoTwitter /> </span>
-                            <span><FaPinterest /></span>
-                            <span><FaInstagramSquare /></span>
-                        </div>
-                    </div>
+                                        <Card.Text>
+                                            ${product.price}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
                 </Col>
             </Row>
             <div className=' text-center mt-5'>
@@ -146,17 +121,17 @@ const ProductDetail = () => {
                 <h3><b>Realted products</b></h3>
             </div>
             {/* Carousel section */}
-            
+
             <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
 
-                {/*Carousel */}
+
                 <Carousel.Item>
-                     
+
                     <Row>
                         <Col md={3}>
                             <Card>
                                 <Card.Img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/12.png" />
-                                <Card.Body>                                    
+                                <Card.Body>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -165,7 +140,7 @@ const ProductDetail = () => {
                             <Card>
                                 <Card.Img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/7.png" />
                                 <Card.Body>
-                                  
+
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -174,7 +149,7 @@ const ProductDetail = () => {
                             <Card>
                                 <Card.Img src="https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/4.png" />
                                 <Card.Body>
-                                   
+
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -227,7 +202,7 @@ const ProductDetail = () => {
                 </Carousel.Item>
 
             </Carousel>
-            
+
         </>
     )
 }
