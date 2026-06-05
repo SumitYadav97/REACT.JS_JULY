@@ -2,7 +2,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RootLayout from "./layout/Rootlayout";
 import Home from "./pages/Home";
-import Shop_ from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,7 +17,6 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
-          <Route path="shop" element={<Shop_ />} />
 
           <Route path="product" element={<ProductRootlayout />}>
             <Route index element={<ProductDetail />} />
