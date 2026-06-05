@@ -23,7 +23,7 @@ function Home() {
     axios.get('https://dummyjson.com/products')
       .then((response) => {
         setProducts(response.data.products);
-      }) 
+      })
       .catch((error) => {
         setError(error.message);
       })

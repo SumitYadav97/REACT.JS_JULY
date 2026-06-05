@@ -83,7 +83,7 @@ const Cart = () => {
                         <div className="cart-plus-minus">
                           <Form.Control
                             type="number"
-                            defaultValue={2}
+                            defaultValue={1}
                             className="cart-plus-minus-box"
                           />
                         </div>

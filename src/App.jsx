@@ -11,6 +11,7 @@ import ProductRootlayout from "./layout/ProductRoot";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
+import Wishlist from "./pages/Wishlist";
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="Cart" element={<Cart />} />
           <Route path="Profile" element={<Profile />} />
+                    <Route path="Wishlist" element={<Wishlist />} />
+
 
 
         </Route>

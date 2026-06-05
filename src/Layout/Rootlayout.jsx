@@ -5,7 +5,8 @@ import {
   FaFacebook, FaHeart, FaInstagramSquare, FaPinterest, FaMapMarkerAlt,
   FaEnvelope, FaShoppingCart,
   FaInstagram,
-  FaTwitter
+  FaTwitter,
+  FaCartPlus
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import { IoLogoTwitter } from "react-icons/io";
@@ -138,12 +139,12 @@ const RootLayout = () => {
                         <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
                           <span class="mini-cart-icon">
                             <i class="icon-handbag"></i>
-                            <sup>2</sup>
+                            <sup> <NavLink to="/Wishlist">2</NavLink></sup>
                           </span>
                           <h6><span>
-                            <Button as={NavLink} to="/Cart">
-                              Cart
-                            </Button></span> <span class="ltn__secondary-color">$89.25</span></h6>
+                            <NavLink className="outline-primary"  as={NavLink} to="/Cart">
+                             <FaCartPlus/>
+                            </NavLink></span> <span class="ltn__secondary-color">$89.25</span></h6>
                         </a>
                       </div>
                     </li>
