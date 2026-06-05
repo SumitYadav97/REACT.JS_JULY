@@ -9,11 +9,7 @@ import { IoSunny } from "react-icons/io5";
 import { api } from "../api/Service";
 
 const ProductRootlayout = () => {
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    const htmlElement = document.querySelector("html");
-    htmlElement.setAttribute("data-bs-theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
+
 
 //   product
   const [count, setCount] = useState(0);
@@ -66,17 +62,7 @@ const ProductRootlayout = () => {
 
   return (
     <>
-      <Container className="text-end">
-
-        <Badge onClick={() => setDarkMode(!darkMode)} className=
-          "me-2 rounded-5 p-2"
-          bg={darkMode ? "light" : "dark"} role=
-          "button">
-          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-
-        </Badge>
-
-      </Container>
+      
 
       
           <Col>
