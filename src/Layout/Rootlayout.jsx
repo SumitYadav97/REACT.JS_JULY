@@ -214,6 +214,11 @@ const RootLayout = () => {
                   <NavDropdown.Item as={NavLink} to="/Profile" >
                     Profile
                   </NavDropdown.Item></div>
+                  
+                   <div className="mt-3 ms-3">
+                  <NavDropdown.Item as={NavLink} to="/Login" >
+                    Login
+                  </NavDropdown.Item></div>
 
 
               </Nav>
