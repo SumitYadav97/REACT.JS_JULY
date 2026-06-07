@@ -262,6 +262,28 @@ const RootLayout = () => {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
+
+
+             <Accordion  defaultActiveKey="3" >
+              <Accordion.Item eventKey="0">
+                <Accordion.Header >Products</Accordion.Header>
+                <Accordion.Body>
+                  <ul  className="text-start">
+              
+                     <li className="nav-item">
+                      <NavLink to="/Wishlist">
+                        <FaArrowRight />
+                        Wishlist
+                      </NavLink>
+
+                    </li>
+                   
+                  </ul>
+                  
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            
             
           </nav>
           <Col>
