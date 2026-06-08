@@ -27,56 +27,54 @@ import RB_Modals_ from "./Interactive_Components/RB_Modals";
 import NavbarWithOffcanvas from "./Interactive_Components/Navbar&offcanvas";
 import RB_Nav_Tabs from "./Interactive_Components/RB_Nav&Tabs";
 import RB_Overlay from "./Interactive_Components/RB_Overlay";
-import RHF_YUP from "./Form/RHF_YUP"; 
+import RHF_YUP from "./Form/RHF_YUP";
 import ReactHookForm from "./Form/RHF_Form";
 import Blog_Listing from "./Blog/Blog_Listing";
 import Blog_Details from "./Blog/Blog_Details";
+import WishlistProvider from "./Context/providers/WishlistProvider";
+import Wishlist from "./pages/Wishlist";
+
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<RootLayout />}>
 
+    <WishlistProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<RootLayout />}>
+            <Route path="counter1" element={<Counterwithusestate />} />
+            <Route path="counter2" element={<ReducerCounter_ />} />
+            <Route path="profile" element={<Staticprofile_ />} />
+            <Route path="todolist" element={<Todolist />} />
+            <Route path="table" element={<EmployeeTable />} />
+            <Route path="breadcrumb" element={<RbBreadCrumb />} />
+            <Route path="buttons" element={<RB_Buttons />} />
+            <Route path="button_group" element={<Button_Group />} />
+            <Route path="Basic_card" element={<Basic_card />} />
+            <Route path="RB_Listgroup" element={<RB_Listgroup />} />
+            <Route path="RB_Figure" element={<RB_Figure />} />
+            <Route path="RB_Pagination" element={<RB_Pagination />} />
+            <Route path="RB_Progressbar" element={<Progress />} />
+            <Route path="RB_Spinner" element={<RB_Spinners />} />
+            <Route path="RB_Accordion" element={<RB_Accordion />} />
+            <Route path="RB_Dropdown" element={<RB_Dropdown />} />
+            <Route path="Dynamic_EmployeeTable" element={<Dynamic_EmployeeTable />} />
+            <Route path="RB_Carousel" element={<RB_CarouselFade />} />
+            <Route path="RB_Modals_" element={<RB_Modals_ />} />
+            <Route path="NavbarWithOffcanvas" element={<NavbarWithOffcanvas />} />
+            <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
+            <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
+            <Route path="RB_Overlay" element={<RB_Overlay />} />
+            <Route path="ReactHookForm" element={<ReactHookForm />} />
+            <Route path="RHF_YUP" element={<RHF_YUP />} />
+            <Route path="Blog_Listing" element={<Blog_Listing />} />
+            <Route path="Blog_Details" element={<Blog_Details />} />
+            <Route path="Wishlist" element={<Wishlist />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </WishlistProvider>
 
-          <Route path="counter1" element={<Counterwithusestate />} />
-          <Route path="counter2" element={<ReducerCounter_ />} />
-          <Route path="profile" element={<Staticprofile_ />} />
-          <Route path="todolist" element={<Todolist />} />
-          <Route path="table" element={<EmployeeTable />} />
-          <Route path="breadcrumb" element={<RbBreadCrumb />} />
-          <Route path="buttons" element={<RB_Buttons />} />
-          <Route path="button_group" element={<Button_Group />} />
-          <Route path="Basic_card" element={<Basic_card />} />
-          <Route path="RB_Listgroup" element={<RB_Listgroup />} />
-          <Route path="RB_Figure" element={<RB_Figure />} />
-          <Route path="RB_Pagination" element={<RB_Pagination />} />
-          <Route path="RB_Progressbar" element={<Progress />} />
-          <Route path="RB_Spinner" element={<RB_Spinners />} />
-          <Route path="RB_Accordion" element={<RB_Accordion />} />
-          <Route path="RB_Dropdown" element={<RB_Dropdown />} />
-          <Route path="Dynamic_EmployeeTable" element={<Dynamic_EmployeeTable />} />
-          <Route path="RB_Carousel" element={<RB_CarouselFade />} />
-          <Route path="RB_Modals_" element={<RB_Modals_ />} />
-          <Route path="NavbarWithOffcanvas" element={<NavbarWithOffcanvas />} />
-          <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
-          <Route path="RB_Nav_Tabs" element={<RB_Nav_Tabs />} />
-          <Route path="RB_Overlay" element={<RB_Overlay />} />
-          <Route path="ReactHookForm" element={<ReactHookForm />} />
-          <Route path="RHF_YUP" element={<RHF_YUP />} />
-          <Route path="Blog_Listing" element={<Blog_Listing />} />
-          <Route path="Blog_Details" element={<Blog_Details />} />
-
-
-
-
-
-
-
-
-        </Route>
-      </Routes>
-    </BrowserRouter>
   );
 };
 
