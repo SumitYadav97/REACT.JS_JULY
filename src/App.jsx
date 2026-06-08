@@ -33,6 +33,7 @@ import Blog_Listing from "./Blog/Blog_Listing";
 import Blog_Details from "./Blog/Blog_Details";
 import WishlistProvider from "./Context/providers/WishlistProvider";
 import Wishlist from "./pages/Wishlist";
+import Products_ from "./pages/Products";
 
 
 const App = () => {
@@ -70,6 +71,8 @@ const App = () => {
             <Route path="Blog_Listing" element={<Blog_Listing />} />
             <Route path="Blog_Details" element={<Blog_Details />} />
             <Route path="Wishlist" element={<Wishlist />} />
+            <Route path="Products" element={<Products_ />} />
+
           </Route>
         </Routes>
       </BrowserRouter>

@@ -4,11 +4,13 @@ import { Accordion, Badge, Button, Col, Container } from "react-bootstrap";
 import { ArrowBarRight, Moon, Sun } from "react-bootstrap-icons";
 import { BsArrowBarRight } from "react-icons/bs";
 import { FaArrowRight, } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoSunny } from "react-icons/io5";
+import { WishlistContext } from "../Context/Context";
 
 const RootLayout = () => {
   const [darkMode, setDarkMode] = useState(true);
+  const { wishlistState } = useContext(WishlistContext)
   useEffect(() => {
     const htmlElement = document.querySelector("html");
     htmlElement.setAttribute("data-bs-theme", darkMode ? "dark" : "light");
@@ -17,6 +19,13 @@ const RootLayout = () => {
   return (
     <>
       <Container className="text-end">
+        <Badge>{wishlistState?.wishlistItems?.length}</Badge>
+        <NavLink to="/Wishlist">
+          Wishlist
+        </NavLink>
+
+
+
 
         <Badge onClick={() => setDarkMode(!darkMode)} className=
           "me-2 rounded-5 p-2"
@@ -224,7 +233,7 @@ const RootLayout = () => {
 
                     </li>
 
-                     <li className="nav-item">
+                    <li className="nav-item">
                       <NavLink to="/RHF_YUP">
                         <FaArrowRight />
                         RHF_yup_Form
@@ -232,59 +241,65 @@ const RootLayout = () => {
 
                     </li>
                   </ul>
-                  
+
                 </Accordion.Body>
               </Accordion.Item>
-            </Accordion> 
-              <Accordion  defaultActiveKey="3" >
+            </Accordion>
+            <Accordion defaultActiveKey="3" >
               <Accordion.Item eventKey="0">
                 <Accordion.Header >Blog</Accordion.Header>
                 <Accordion.Body>
-                  <ul  className="text-start">
-                    <li  className="nav-item">
+                  <ul className="text-start">
+                    <li className="nav-item">
                       <NavLink to="/Blog_Listing">
                         <FaArrowRight />
-                      Blog Listing
+                        Blog Listing
                       </NavLink>
 
                     </li>
 
-                     <li className="nav-item">
+                    <li className="nav-item">
                       <NavLink to="/Blog_Details">
                         <FaArrowRight />
                         Blog Details
                       </NavLink>
 
                     </li>
-                   
+
                   </ul>
-                  
+
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
 
 
-             <Accordion  defaultActiveKey="3" >
+            <Accordion defaultActiveKey="3" >
               <Accordion.Item eventKey="0">
                 <Accordion.Header >Products</Accordion.Header>
                 <Accordion.Body>
-                  <ul  className="text-start">
-              
-                     <li className="nav-item">
+                  <ul className="text-start">
+
+                    <li className="nav-item">
                       <NavLink to="/Wishlist">
                         <FaArrowRight />
                         Wishlist
                       </NavLink>
-
                     </li>
-                   
+
+                    <li className="nav-item">
+                      <NavLink to="/Products">
+                        <FaArrowRight />
+                        Products
+                      </NavLink>
+                    </li>
+
                   </ul>
-                  
+
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
-            
-            
+
+
           </nav>
           <Col>
             <main >
