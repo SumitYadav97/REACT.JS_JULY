@@ -16,3 +16,25 @@ export const getProductsByCategory = async (slug) => {
     const response = await api.get('/products/category/' + slug)
     return response
 }
+
+// MOCK_API
+export const mockApi = axios.create({
+    baseURL: import.meta.env.VITE_MOCK_API_URL
+})
+// Create
+export const registeruser = async (data) => {
+    const response = await mockApi.post('/users',data)
+    return response
+}
+// Read
+export const authuser = async (data) => {
+    const response = await mockApi.get('/users?email='+data.email)
+    return response
+}
+// Update
+export const profile = async (id) => {
+    const response = await mockApi.get('/users/'+ id)
+    return response
+}
+
+

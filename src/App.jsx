@@ -13,6 +13,7 @@ import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import Wishlist from "./pages/Wishlist";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 
 function App() {
@@ -22,19 +23,18 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
-
-
           <Route path="product" element={<ProductRootlayout />}>
             <Route index element={<ProductDetail />} />
             <Route path=":category" element={<ProductDetail />} />
           </Route>
-
           <Route path="checkout" element={<Checkout />} />
           <Route path="contact" element={<Contact />} />
           <Route path="Cart" element={<Cart />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="Wishlist" element={<Wishlist />} />
           <Route path="Login" element={<Login />} />
+          <Route path="Register" element={<Register />} />
+
 
 
 
