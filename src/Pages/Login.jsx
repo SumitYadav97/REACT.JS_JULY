@@ -12,29 +12,34 @@ function Login() {
   const { formState: { errors }, register, handleSubmit } = useForm()
   const checkuser = async (data) => {
     try {
-      const response = await authuser(data)
+      const response = await authuser(data);
+
+      console.log(response.data);
+
       if (
+        response.data.length > 0 &&
         response.data[0].email === data.email &&
         response.data[0].pasword === data.pasword
       ) {
         toast.success("Login Successfully..");
 
+        localStorage.setItem("login", true);
+        localStorage.setItem("id", response.data[0].id);
+
         setTimeout(() => {
           navigate("/Home");
         }, 1000);
-        localStorage.setItem("login",true)
-        localStorage.setItem("id",response.data[0].id)
       } else {
-        toast.error("Invalid username or pasword");
+        toast.error("Invalid email or password");
       }
-      setStatus(response)
     } catch (error) {
-      setError(error)
+      console.log(error);
+      toast.error("Something went wrong");
     }
-  }
+  };
   const handleFormSubmit = (data) => {
     checkuser(data)
-    
+
   }
   return (
     <>
@@ -89,7 +94,7 @@ function Login() {
                     placeholder="email"
                     className="mb-2"
                     {...register("email", {
-                      required: "Email is required",
+                      required: "email is required",
                       message: "Please enter a valid email",
                     })}
                   />
@@ -101,7 +106,7 @@ function Login() {
                   )}
                   {/* Password */}
                   <Form.Control
-                    type="pasword"
+                    type="password"
                     placeholder="pasword"
                     className="mb-2"
                     {...register("pasword", {

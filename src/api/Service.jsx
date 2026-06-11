@@ -23,18 +23,28 @@ export const mockApi = axios.create({
 })
 // Create
 export const registeruser = async (data) => {
-    const response = await mockApi.post('/users',data)
+    const response = await mockApi.post('/users', data)
     return response
 }
 // Read
 export const authuser = async (data) => {
-    const response = await mockApi.get('/users?email='+data.email)
+    const response = await mockApi.get('/users?email=' + data.email)
     return response
 }
 // Update
-export const profile = async (id) => {
-    const response = await mockApi.get('/users/'+ id)
+export const getUserById = async (id) => {
+    const response = await mockApi.get('/users/' + id)
     return response
 }
-
+// change Profile
+// change Profile
+export const updateUser = async (data) => {
+  const response = await mockApi.put('/users/' + data.id, data);
+  return response;
+};
+// delete
+export const deleteUser = async (id) => {
+    const response = await mockApi.delete('/users/' + id)
+    return response
+}
 

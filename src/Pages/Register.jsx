@@ -170,8 +170,8 @@ function Register() {
                     </Button>
                   </div>
                 </Form>
-                {status}
-                {JSON.stringify(status)}
+                {/* {status}
+                {JSON.stringify(status)} */}
 
                 <div className="by-agree text-center mt-4">
                   <p>
