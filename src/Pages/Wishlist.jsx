@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Table,
-  Button,
-  Image,
-} from "react-bootstrap";
+import { Container, Row,Col,Table,Button, Image,} from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromWishlist } from "../store/slices/wishlistSlice";
@@ -17,12 +10,10 @@ const Wishlist = () => {
   const wishlistItems = useSelector(
     (state) => state.wishlist.items
   );
-
   const total = wishlistItems.reduce(
     (sum, item) => sum + Number(item.price),
     0
   );
-
   return (
     <>
       {/* Overlay */}

@@ -1,29 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { addToCart } from "../store/slices/cartSlice";
-import {
-    getAllCategories,
-    getProductsByCategory,
-} from "../api/Service";
+import { getAllCategories, getProductsByCategory, } from "../api/Service";
 import { ArrowRight, Check } from "react-bootstrap-icons";
-import {
-    Button,
-    Card,
-    Col,
-    Container,
-    ListGroup,
-    Row,
-    Spinner,
-} from "react-bootstrap";
+import { Button, Card, Col, Container, ListGroup, Row, Spinner, } from "react-bootstrap";
 import { NavLink, useLocation, useParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
-import {
-    addToWishlist,
-    removeFromWishlist,
-} from "../store/slices/wishListslice";
-
+import { addToWishlist, removeFromWishlist, } from "../store/slices/wishListslice";
 import { toast, ToastContainer } from "react-toastify";
-
 const ProductDetail = () => {
     const param = useParams();
     const location = useLocation();
@@ -208,7 +191,7 @@ const ProductDetail = () => {
                                                             >
                                                                 Add To Wishlist
                                                             </Button>
-                                                            
+
                                                         )}
                                                     </Card.Footer>
                                                 </Card>

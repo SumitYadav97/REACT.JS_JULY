@@ -42,11 +42,8 @@ const Cart = () => {
                     cartItems.map((item) => (
                       <tr key={item.id}>
                         <td>
-                          <Button
-                            variant="danger"
-                            size="sm"
-                            onClick={() =>
-                              dispatch(removeFromCart(item.id))
+                          <Button variant="danger" size="sm" 
+                          onClick={() =>dispatch(removeFromCart(item.id))
                             }
                           >
                             ×
@@ -70,8 +67,7 @@ const Cart = () => {
 
                         <td>
                           <div className="d-flex gap-2 align-items-center">
-                            <Button
-                              size="sm"
+                            <Button size="sm"
                               onClick={() =>
                                 dispatch(
                                   decreaseQty(item.id)
@@ -103,7 +99,7 @@ const Cart = () => {
                           {(
                             item.price *
                             item.quantity
-                          ).toFixed(2)}
+                          )}
                         </td>
                       </tr>
                     ))
@@ -129,7 +125,7 @@ const Cart = () => {
                     <tr>
                       <td>Subtotal</td>
                       <td>
-                        ₹ {subtotal.toFixed(2)}
+                        ₹ {subtotal}
                       </td>
                     </tr>
 
@@ -144,7 +140,7 @@ const Cart = () => {
                       </td>
                       <td>
                         <strong>
-                          ₹ {subtotal.toFixed(2)}
+                          ₹ {subtotal}
                         </strong>
                       </td>
                     </tr>
