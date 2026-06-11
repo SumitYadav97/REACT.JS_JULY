@@ -21,16 +21,23 @@ import brand4 from "./../assets/img/brand-logo/4.png";
 import brand5 from "./../assets/img/brand-logo/5.png";
 
 import { FaPhoneAlt, FaSearch, FaShoppingBag, FaBars, } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const RootLayout = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const wishlistItems = useSelector(
+    (state) => state.wishlist.items
+  );
+  const cartItems = useSelector(
+    (state) => state.cart.items
+  );
   useEffect(() => {
     const htmlElement = document.querySelector("html");
     htmlElement.setAttribute("data-bs-theme", darkMode ? "dark" : "light");
   }, [darkMode]);
   return (
     <>
-      <Container className="text-end">
+      {/* <Container className="text-end">
 
         <Badge onClick={() => setDarkMode(!darkMode)} className=
           "me-2 rounded-5 p-2"
@@ -40,7 +47,7 @@ const RootLayout = () => {
 
         </Badge>
 
-      </Container>
+      </Container> */}
       {/* <!-- HEADER AREA START (header-3) --> */}
       <header class="ltn__header-area ltn__header-3 section-bg-6">
         {/* <!-- ltn__header-middle-area start --> */}
@@ -136,16 +143,39 @@ const RootLayout = () => {
                     <li>
                       {/* <!-- mini-cart 2 --> */}
                       <div class="mini-cart-icon mini-cart-icon-2">
-                        <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
-                          <span class="mini-cart-icon">
-                            <i class="icon-handbag"></i>
-                            <sup> <NavLink to="/Wishlist">2</NavLink></sup>
-                          </span>
-                          <h6><span>
-                            <NavLink className="outline-primary"  as={NavLink} to="/Cart">
-                             <FaCartPlus/>
-                            </NavLink></span> <span class="ltn__secondary-color">$89.25</span></h6>
-                        </a>
+                        <i class="icon-handbag"></i>
+                        <sup> <NavLink
+                          to="/Wishlist"
+                          className="position-relative text-decoration-none"
+                        >
+                          Wishlist
+
+                          {wishlistItems.length > 0 && (
+                            <span
+                              className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            >
+                              {wishlistItems.length}
+                            </span>
+                          )}
+                        </NavLink></sup>
+                        <h6 className="position-relative d-inline-block ms-3" >
+                          <NavLink
+                            className="outline-primary position-relative"
+                            to="/Cart"
+                          >
+                            <FaCartPlus size={22} />
+
+                            {cartItems.length > 0 && (
+                              <span
+                                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                              >
+                                {cartItems.length}
+                              </span>
+                            )}
+                          </NavLink>
+
+
+                        </h6>
                       </div>
                     </li>
                     <li>
@@ -210,21 +240,21 @@ const RootLayout = () => {
                     Contact
                   </NavDropdown.Item></div>
 
-                   <div className="mt-3 ms-3">
+                <div className="mt-3 ms-3">
                   <NavDropdown.Item as={NavLink} to="/Profile" >
                     Profile
                   </NavDropdown.Item></div>
-                  
-                   <div className="mt-3 ms-3">
+
+                <div className="mt-3 ms-3">
                   <NavDropdown.Item as={NavLink} to="/Login" >
                     Login
                   </NavDropdown.Item>
-                  </div>
-                     <div className="mt-3 ms-3">
+                </div>
+                <div className="mt-3 ms-3">
                   <NavDropdown.Item as={NavLink} to="/Register" >
                     Register
                   </NavDropdown.Item>
-                  </div>
+                </div>
 
 
 
@@ -238,33 +268,33 @@ const RootLayout = () => {
 
       <Outlet />
 
-<div className="ltn__brand-logo-area ltn__brand-logo-1 section-bg-1 pt-35 pb-35 plr--5">
+      <div className="ltn__brand-logo-area ltn__brand-logo-1 section-bg-1 pt-35 pb-35 plr--5">
 
-    <div className="d-flex justify-content-center align-items-center flex-wrap gap-4">
+        <div className="d-flex justify-content-center align-items-center flex-wrap gap-4">
 
-      <div className="ltn__brand-logo-item">
-        <Image src={brand1} alt="Brand Logo" fluid />
+          <div className="ltn__brand-logo-item">
+            <Image src={brand1} alt="Brand Logo" fluid />
+          </div>
+
+          <div className="ltn__brand-logo-item">
+            <Image src={brand2} alt="Brand Logo" fluid />
+          </div>
+
+          <div className="ltn__brand-logo-item">
+            <Image src={brand3} alt="Brand Logo" fluid />
+          </div>
+
+          <div className="ltn__brand-logo-item">
+            <Image src={brand4} alt="Brand Logo" fluid />
+          </div>
+
+          <div className="ltn__brand-logo-item">
+            <Image src={brand5} alt="Brand Logo" fluid />
+          </div>
+
+        </div>
+
       </div>
-
-      <div className="ltn__brand-logo-item">
-        <Image src={brand2} alt="Brand Logo" fluid />
-      </div>
-
-      <div className="ltn__brand-logo-item">
-        <Image src={brand3} alt="Brand Logo" fluid />
-      </div>
-
-      <div className="ltn__brand-logo-item">
-        <Image src={brand4} alt="Brand Logo" fluid />
-      </div>
-
-      <div className="ltn__brand-logo-item">
-        <Image src={brand5} alt="Brand Logo" fluid />
-      </div>
-
-    </div>
-  
-</div>
 
 
       {/* FOOTER AREA START */}

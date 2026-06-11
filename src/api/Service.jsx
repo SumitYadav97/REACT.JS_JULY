@@ -37,7 +37,6 @@ export const getUserById = async (id) => {
     return response
 }
 // change Profile
-// change Profile
 export const updateUser = async (data) => {
   const response = await mockApi.put('/users/' + data.id, data);
   return response;

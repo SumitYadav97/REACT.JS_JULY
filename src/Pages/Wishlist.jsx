@@ -1,177 +1,190 @@
 import React from "react";
-import { Container, Row, Col, Table, Form, Button, Image } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Table,
+  Button,
+  Image,
+} from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromWishlist } from "../store/slices/wishlistSlice";
 
 const Wishlist = () => {
-    return (<>
-        {/* Overlay */}
-        <div className="ltn__utilize-overlay"></div>
+  const dispatch = useDispatch();
 
-        {/* Breadcrumb */}
-        <div className="ltn__breadcrumb-area ltn__breadcrumb-area-4 ltn__breadcrumb-color-white---">
-            <Container>
-                <Row>
-                    <Col lg={12}>
-                        <div className="ltn__breadcrumb-inner text-center">
-                            <h1 className="ltn__page-title">Wishlist</h1>
+  const wishlistItems = useSelector(
+    (state) => state.wishlist.items
+  );
 
-                            <div className="ltn__breadcrumb-list">
-                                <ul>
-                                    <li>
-                                        <NavLink to="/">Home</NavLink>
-                                    </li>
-                                    <li>Wishlist</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
+  const total = wishlistItems.reduce(
+    (sum, item) => sum + Number(item.price),
+    0
+  );
 
-        {/* Cart Area */}
-        <div className="liton__shoping-cart-area mb-100">
-            <Container>
-                <Row>
-                    <Col lg={12}>
-                        <div className="shoping-cart-inner">
+  return (
+    <>
+      {/* Overlay */}
+      <div className="ltn__utilize-overlay"></div>
 
-                            <div className="shoping-cart-table table-responsive">
-                                <Table>
-                                    <tbody>
-                                        {[
-                                            {
-                                                img: "https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/1.png",
-                                                name: "Brake Conversion Kit",
-                                                price: 149,
-                                            },
-                                            {
-                                                img: "https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/2.png",
-                                                name: "OE Replica Wheels",
-                                                price: 85,
-                                            },
-                                            {
-                                                img: "https://tunatheme.com/tf/html/fiama-preview/fiama/img/product/3.png",
-                                                name: "Wheel Bearing Retainer",
-                                                price: 75,
-                                            },
-                                        ].map((item, index) => (
-                                            <tr key={index}>
-                                                <td className="cart-product-remove">×</td>
+      {/* Breadcrumb */}
+      <div className="ltn__breadcrumb-area ltn__breadcrumb-area-4 ltn__breadcrumb-color-white---">
+        <Container>
+          <Row>
+            <Col lg={12}>
+              <div className="ltn__breadcrumb-inner text-center">
+                <h1 className="ltn__page-title">Wishlist</h1>
 
-                                                <td className="cart-product-image">
-                                                    <NavLink to="/product-details">
-                                                        <Image src={item.img} alt={item.name} fluid />
-                                                    </NavLink>
-                                                </td>
+                <div className="ltn__breadcrumb-list">
+                  <ul>
+                    <li>
+                      <NavLink to="/">Home</NavLink>
+                    </li>
+                    <li>Wishlist</li>
+                  </ul>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
 
-                                                <td className="cart-product-info">
-                                                    <h4>
-                                                        <NavLink to="/product-details">
-                                                            {item.name}
-                                                        </NavLink>
-                                                    </h4>
-                                                </td>
+      {/* Wishlist Area */}
+      <div className="liton__shoping-cart-area mb-100">
+        <Container>
+          <Row>
+            <Col lg={12}>
+              <div className="shoping-cart-inner">
+                <div className="shoping-cart-table table-responsive">
+                  <Table>
+                    <thead>
+                      <tr>
+                        <th>Remove</th>
+                        <th>Image</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
 
-                                                <td className="cart-product-price">
-                                                    ${item.price}.00
-                                                </td>
+                    <tbody>
+                      {wishlistItems.length === 0 ? (
+                        <tr>
+                          <td
+                            colSpan="6"
+                            className="text-center py-5"
+                          >
+                            <h4>Your Wishlist is Empty</h4>
 
-                                                <td className="cart-product-quantity ">
-                                                    <div>
-                                                        <div><p className="pt-3">In stock</p></div>
-                                                    </div>
-                                                </td>
-                                                <Button className="mt-5">
-                                                    <NavLink
-                                                        to="/Cart"
-                                                        className="theme-btn-1 btn btn-effect-1"
-                                                    >
-                                                        Add to Cart
-                                                    </NavLink>
-                                                </Button>
-                                            </tr>
-                                        ))}
+                            <NavLink
+                              to="/product"
+                              className="theme-btn-1 btn btn-effect-1 mt-3"
+                            >
+                              Continue Shopping
+                            </NavLink>
+                          </td>
+                        </tr>
+                      ) : (
+                        wishlistItems.map((item) => (
+                          <tr key={item.id}>
+                            <td className="cart-product-remove">
+                              <Button
+                                variant="danger"
+                                size="sm"
+                                onClick={() =>
+                                  dispatch(
+                                    removeFromWishlist(item.id)
+                                  )
+                                }
+                              >
+                                ×
+                              </Button>
+                            </td>
 
-                                        <tr className="cart-coupon-row">
-                                            <td colSpan="6">
-                                                <div className="cart-coupon d-flex gap-2">
-                                                    <Form.Control
-                                                        type="text"
-                                                        placeholder="Coupon code"
-                                                    />
+                            <td className="cart-product-image">
+                              <Image
+                                src={item.thumbnail}
+                                alt={item.title}
+                                fluid
+                                style={{
+                                  width: "80px",
+                                  height: "80px",
+                                  objectFit: "cover",
+                                }}
+                              />
+                            </td>
 
-                                                    <Button
-                                                        className="theme-btn-2 btn-effect-2"
-                                                    >
-                                                        Apply Coupon
-                                                    </Button>
-                                                </div>
-                                            </td>
+                            <td className="cart-product-info">
+                              <h5>{item.title}</h5>
+                            </td>
 
-                                            <td>
-                                                <Button
-                                                    className="theme-btn-2 btn-effect-2"
-                                                    disabled
-                                                >
-                                                    Update Cart
-                                                </Button>
-                                            </td>
-                                        </tr>
+                            <td className="cart-product-price">
+                              ₹ {item.price}
+                            </td>
 
-                                    </tbody>
-                                </Table>
-                            </div>
+                            <td className="cart-product-quantity">
+                              <span className="text-success">
+                                In Stock
+                              </span>
+                            </td>
 
-                            {/* Cart Total */}
-                            <div className="shoping-cart-total mt-50">
-                                <h4>Cart Totals</h4>
+                            <td>
+                              <Button
+                                className="theme-btn-1 btn btn-effect-1"
+                                size="sm"
+                              >
+                                Add To Cart
+                              </Button>
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </Table>
+                </div>
 
-                                <Table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Cart Subtotal</td>
-                                            <td>$618.00</td>
-                                        </tr>
+                {/* Wishlist Total */}
+                {wishlistItems.length > 0 && (
+                  <div className="shoping-cart-total mt-50">
+                    <h4>Wishlist Summary</h4>
 
-                                        <tr>
-                                            <td>Shipping and Handling</td>
-                                            <td>$15.00</td>
-                                        </tr>
+                    <Table>
+                      <tbody>
+                        <tr>
+                          <td>Total Items</td>
+                          <td>{wishlistItems.length}</td>
+                        </tr>
 
-                                        <tr>
-                                            <td>Vat</td>
-                                            <td>$0.00</td>
-                                        </tr>
+                        <tr>
+                          <td>
+                            <strong>Total Amount</strong>
+                          </td>
+                          <td>
+                            <strong>₹ {total}</strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </Table>
 
-                                        <tr>
-                                            <td>
-                                                <strong>Order Total</strong>
-                                            </td>
-                                            <td>
-                                                <strong>$633.00</strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-
-                                <div className="btn-wrapper text-end">
-                                    <NavLink
-                                        to="/checkout"
-                                        className="theme-btn-1 btn btn-effect-1"
-                                    >
-                                        Proceed to Checkout
-                                    </NavLink>
-                                </div>
-                            </div>
-
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
+                    <div className="btn-wrapper text-end">
+                      <NavLink
+                        to="/checkout"
+                        className="theme-btn-1 btn btn-effect-1"
+                      >
+                        Proceed to Checkout
+                      </NavLink>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </>
-    )
-}
+  );
+};
 
-export default Wishlist
+export default Wishlist;

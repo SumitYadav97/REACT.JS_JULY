@@ -32,10 +32,7 @@ function Register() {
     addNewUser(data);
     navigate("/Login")
   };
-
   return (
-
-
     <>
       {/* Breadcrumb */}
       <div className="ltn__breadcrumb-area ltn__breadcrumb-area-4 ltn__breadcrumb-color-white---">

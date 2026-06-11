@@ -13,7 +13,7 @@ const Profile = () => {
 
   const UserDetail = async () => {
     try {
-      const userID = localStorage.getItem("id"); // FIXED
+      const userID = localStorage.getItem("id"); 
 
       const response = await getUserById(userID);
 
@@ -67,7 +67,6 @@ const Profile = () => {
     removeUser(userData?.id)
 
   }
-
   const handleFormSubmit = (data) => {
     data.id = localStorage.getItem("id");
     updateProfile(data);

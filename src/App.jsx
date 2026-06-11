@@ -14,14 +14,17 @@ import Profile from "./pages/Profile";
 import Wishlist from "./pages/Wishlist";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { Provider } from "react-redux";
+import { store } from "./store/Store";
 
 
 function App() {
   return (
+     <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RootLayout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Register />} />
           <Route path="home" element={<Home />} />
           <Route path="product" element={<ProductRootlayout />}>
             <Route index element={<ProductDetail />} />
@@ -34,14 +37,10 @@ function App() {
           <Route path="Wishlist" element={<Wishlist />} />
           <Route path="Login" element={<Login />} />
           <Route path="Register" element={<Register />} />
-
-
-
-
-
         </Route>
       </Routes>
     </BrowserRouter>
+    </Provider>
   );
 }
 
