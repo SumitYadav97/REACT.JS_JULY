@@ -56,7 +56,7 @@ const Wishlist = () => {
                         <th>Product</th>
                         <th>Price</th>
                         <th>Status</th>
-                        <th>Action</th>
+                       
                       </tr>
                     </thead>
 
@@ -122,12 +122,7 @@ const Wishlist = () => {
                             </td>
 
                             <td>
-                              <Button
-                                className="theme-btn-1 btn btn-effect-1"
-                                size="sm"
-                              >
-                                Add To Cart
-                              </Button>
+                             
                             </td>
                           </tr>
                         ))

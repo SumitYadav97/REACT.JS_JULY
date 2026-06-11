@@ -42,19 +42,15 @@ const Cart = () => {
                     cartItems.map((item) => (
                       <tr key={item.id}>
                         <td>
-                          <Button variant="danger" size="sm" 
-                          onClick={() =>dispatch(removeFromCart(item.id))
+                          <Button variant="danger" size="sm"
+                            onClick={() => dispatch(removeFromCart(item.id))
                             }
                           >
                             ×
                           </Button>
                         </td>
                         <td>
-                          <Image
-                            src={item.thumbnail}
-                            alt={item.title}
-                            width="80"
-                          />
+                          <Image src={item.thumbnail} alt={item.title} width="80" />
                         </td>
 
                         <td>
@@ -110,7 +106,7 @@ const Cart = () => {
                         className="text-center"
                       >
                         <h2> Cart is Empty</h2>
-                       
+
                       </td>
                     </tr>
                   )}
