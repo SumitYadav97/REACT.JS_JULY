@@ -10,13 +10,10 @@ import { toast, ToastContainer } from "react-toastify";
 const ProductDetail = () => {
     const param = useParams();
     const location = useLocation();
-
     const dispatch = useDispatch();
-
     const wishlistItems = useSelector(
         (state) => state.wishlist.items
     );
-
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [error, setError] = useState("");

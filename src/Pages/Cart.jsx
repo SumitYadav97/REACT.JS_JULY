@@ -3,7 +3,8 @@ import { Container, Row, Col, Table, Button, Image, } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, increaseQty, decreaseQty, } from "../store/slices/cartSlice";
+import { removeFromCart } from "../store/slices/cartSlice";
+import { Crosshair, Trash } from "react-bootstrap-icons";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -11,12 +12,12 @@ const Cart = () => {
   const cartItems = useSelector(
     (state) => state.cart.items
   );
-
   const subtotal = cartItems.reduce(
-    (total, item) =>
-      total + item.price * item.quantity,
-    0
-  );
+  (total, item) => total + (item.price * (item.quantity || 1)),
+  0
+);
+
+
   return (
     <>
       <div className="ltn__utilize-overlay"></div>
@@ -46,44 +47,34 @@ const Cart = () => {
                             onClick={() => dispatch(removeFromCart(item.id))
                             }
                           >
-                            ×
+                            <Trash/>
                           </Button>
                         </td>
                         <td>
                           <Image src={item.thumbnail} alt={item.title} width="80" />
                         </td>
-
                         <td>
                           <h5>{item.title}</h5>
                         </td>
-
                         <td>
                           ₹ {item.price}
                         </td>
-
                         <td>
                           <div className="d-flex gap-2 align-items-center">
-                            <Button size="sm"
-                              onClick={() =>
-                                dispatch(
-                                  decreaseQty(item.id)
-                                )
-                              }
+                            <Button
+                              size="sm"
+                              className="theme-btn-1 btn btn-effect-1 mt-3"
+                              style={{ border: "none" }}
                             >
                               -
                             </Button>
 
-                            <span>
-                              {item.quantity}
-                            </span>
+                            <span>{item.quantity}</span>
 
                             <Button
                               size="sm"
-                              onClick={() =>
-                                dispatch(
-                                  increaseQty(item.id)
-                                )
-                              }
+                              className="theme-btn-1 btn btn-effect-1 mt-3"
+                              style={{ border: "none" }}
                             >
                               +
                             </Button>
@@ -106,7 +97,6 @@ const Cart = () => {
                         className="text-center"
                       >
                         <h2> Cart is Empty</h2>
-
                       </td>
                     </tr>
                   )}
@@ -115,7 +105,6 @@ const Cart = () => {
 
               <div className="shoping-cart-total mt-4">
                 <h4>Cart Totals</h4>
-
                 <Table>
                   <tbody>
                     <tr>
@@ -127,7 +116,7 @@ const Cart = () => {
 
                     <tr>
                       <td>Shipping</td>
-                      <td>₹ 0.00</td>
+                      <td>₹ 50.00</td>
                     </tr>
 
                     <tr>
@@ -146,7 +135,8 @@ const Cart = () => {
                 <div className="text-end">
                   <NavLink
                     to="/checkout"
-                    className="btn btn-primary"
+                    className="theme-btn-1 btn btn-effect-1 mt-3 "
+                    style={{ border: "none" }}
                   >
                     Proceed To Checkout
                   </NavLink>

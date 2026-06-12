@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Navbar, Form, Button, InputGroup, Dropdown, Badge, Nav, NavDropdown } from "react-bootstrap";
 import { Moon, Search, Sun } from "react-bootstrap-icons";
-import {
-  FaFacebook, FaHeart, FaInstagramSquare, FaPinterest, FaMapMarkerAlt,
+import { FaFacebook, FaHeart, FaInstagramSquare, FaPinterest, FaMapMarkerAlt,
   FaEnvelope, FaShoppingCart,
   FaInstagram,
   FaTwitter,
@@ -25,8 +24,7 @@ import { useSelector } from "react-redux";
 
 const RootLayout = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const wishlistItems = useSelector(
-    (state) => state.wishlist.items
+  const wishlistItems = useSelector((state) => state.wishlist.items
   );
   const cartItems = useSelector(
     (state) => state.cart.items
@@ -150,13 +148,12 @@ const RootLayout = () => {
                         >
                           Wishlist
 
-                          {wishlistItems.length > 0 && (
-                            <span
-                              className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                         
+                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                             >
                               {wishlistItems.length}
                             </span>
-                          )}
+                          
                         </NavLink></sup>
                         <h6 className="position-relative d-inline-block ms-3" >
                           <NavLink
@@ -164,14 +161,12 @@ const RootLayout = () => {
                             to="/Cart"
                           >
                             <FaCartPlus size={22} />
-
-                            {cartItems.length > 0 && (
                               <span
                                 className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                               >
                                 {cartItems.length}
                               </span>
-                            )}
+                           
                           </NavLink>
 
 

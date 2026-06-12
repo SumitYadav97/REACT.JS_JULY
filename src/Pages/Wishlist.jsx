@@ -6,9 +6,7 @@ import { removeFromWishlist } from "../store/slices/wishlistSlice";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
-
-  const wishlistItems = useSelector(
-    (state) => state.wishlist.items
+  const wishlistItems = useSelector((state) => state.wishlist.items
   );
   const total = wishlistItems.reduce(
     (sum, item) => sum + Number(item.price),
@@ -81,12 +79,10 @@ const Wishlist = () => {
                         wishlistItems.map((item) => (
                           <tr key={item.id}>
                             <td className="cart-product-remove">
-                              <Button
-                                variant="danger"
+                              <Button variant="danger"
                                 size="sm"
                                 onClick={() =>
-                                  dispatch(
-                                    removeFromWishlist(item.id)
+                                  dispatch(removeFromWishlist(item.id)
                                   )
                                 }
                               >
@@ -95,11 +91,7 @@ const Wishlist = () => {
                             </td>
 
                             <td className="cart-product-image">
-                              <Image
-                                src={item.thumbnail}
-                                alt={item.title}
-                                fluid
-                                style={{
+                              <Image src={item.thumbnail} alt={item.title} fluid style={{
                                   width: "80px",
                                   height: "80px",
                                   objectFit: "cover",
