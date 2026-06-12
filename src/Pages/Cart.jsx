@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Table, Button, Image, } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
@@ -12,12 +12,16 @@ const Cart = () => {
   const cartItems = useSelector(
     (state) => state.cart.items
   );
-  const subtotal = cartItems.reduce(
-    (total, item) => total + (item.price * (item.quantity || 1)),
-    0
-  );
+  const [quantity, setQuantity] = useState(1);
 
-
+  const increase = () => {
+    setQuantity((prev) => prev + 1);
+  };
+  const decrease = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
   return (
     <>
       <div className="ltn__utilize-overlay"></div>
@@ -32,7 +36,6 @@ const Cart = () => {
           </Row>
         </Container>
       </div>
-
       <div className="liton__shoping-cart-area mb-100">
         <Container>
           <Row>
@@ -60,33 +63,27 @@ const Cart = () => {
                           ₹ {item.price}
                         </td>
                         <td>
-                          <div className="d-flex gap-2 align-items-center">
+                          <div className="d-flex align-items-center gap-2">
                             <Button
                               size="sm"
-                              className="theme-btn-1 btn btn-effect-1 mt-3"
+                              className="theme-btn-1 btn btn-effect-1"
                               style={{ border: "none" }}
+                              onClick={decrease}
                             >
                               -
                             </Button>
 
-                            <span>{item.quantity}</span>
+                            <span>{quantity}</span>
 
                             <Button
                               size="sm"
-                              className="theme-btn-1 btn btn-effect-1 mt-3"
+                              className="theme-btn-1 btn btn-effect-1"
                               style={{ border: "none" }}
+                              onClick={increase}
                             >
                               +
                             </Button>
                           </div>
-                        </td>
-
-                        <td>
-                          ₹{" "}
-                          {(
-                            item.price *
-                            item.quantity
-                          )}
                         </td>
                       </tr>
                     ))
@@ -110,7 +107,7 @@ const Cart = () => {
                     <tr>
                       <td>Subtotal</td>
                       <td>
-                        ₹ {subtotal}
+
                       </td>
                     </tr>
 
@@ -125,7 +122,7 @@ const Cart = () => {
                       </td>
                       <td>
                         <strong>
-                          ₹ {subtotal}
+
                         </strong>
                       </td>
                     </tr>
