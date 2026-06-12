@@ -13,9 +13,9 @@ const Cart = () => {
     (state) => state.cart.items
   );
   const subtotal = cartItems.reduce(
-  (total, item) => total + (item.price * (item.quantity || 1)),
-  0
-);
+    (total, item) => total + (item.price * (item.quantity || 1)),
+    0
+  );
 
 
   return (
@@ -47,7 +47,7 @@ const Cart = () => {
                             onClick={() => dispatch(removeFromCart(item.id))
                             }
                           >
-                            <Trash/>
+                            <Trash />
                           </Button>
                         </td>
                         <td>
@@ -133,13 +133,17 @@ const Cart = () => {
                 </Table>
 
                 <div className="text-end">
-                  <NavLink
-                    to="/checkout"
-                    className="theme-btn-1 btn btn-effect-1 mt-3 "
-                    style={{ border: "none" }}
-                  >
-                    Proceed To Checkout
-                  </NavLink>
+                  {cartItems.length > 0 && (
+                    <div className="text-end">
+                      <NavLink
+                        to="/checkout"
+                        className="theme-btn-1 btn btn-effect-1 mt-3"
+                        style={{ border: "none" }}
+                      >
+                        Proceed To Checkout
+                      </NavLink>
+                    </div>
+                  )}
                 </div>
               </div>
             </Col>

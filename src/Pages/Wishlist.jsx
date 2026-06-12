@@ -8,10 +8,7 @@ const Wishlist = () => {
   const dispatch = useDispatch();
   const wishlistItems = useSelector((state) => state.wishlist.items
   );
-  const total = wishlistItems.reduce(
-    (sum, item) => sum + Number(item.price),
-    0
-  );
+
   return (
     <>
       {/* Overlay */}
@@ -125,30 +122,26 @@ const Wishlist = () => {
 
                 {/* Wishlist Total */}
                 {wishlistItems.length > 0 && (
-                  <div className="shoping-cart-total mt-50">
+                  <div >
                     <h4>Wishlist Summary</h4>
-
                     <Table>
                       <tbody>
                         <tr>
                           <td>Total Items</td>
                           <td>{wishlistItems.length}</td>
                         </tr>
-
                         <tr>
                           <td>
                             <strong>Total Amount</strong>
                           </td>
                           <td>
-                            <strong>₹ {total}</strong>
                           </td>
                         </tr>
                       </tbody>
                     </Table>
 
                     <div className="btn-wrapper text-end">
-                      <NavLink
-                        to="/checkout"
+                      <NavLink to="/checkout"
                         className="theme-btn-1 btn btn-effect-1"
                       >
                         Proceed to Checkout
