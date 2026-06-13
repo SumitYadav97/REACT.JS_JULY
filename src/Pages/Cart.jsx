@@ -1,41 +1,49 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Table, Button, Image, } from "react-bootstrap";
+import { Container, Row, Col, Table, Button, Image, InputGroup, Form, } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../store/slices/cartSlice";
-import { Crosshair, Trash } from "react-bootstrap-icons";
-
+import { removeFromCart, increaseQty, decreaseQty, } from "../store/slices/cartSlice";
+import { Trash } from "react-bootstrap-icons";
+import { toast, ToastContainer } from "react-toastify";
 const Cart = () => {
   const dispatch = useDispatch();
 
-  const cartItems = useSelector(
-    (state) => state.cart.items
-  );
-  const [quantity, setQuantity] = useState(1);
+  const cartItems = useSelector((state) => state.cart.items);
 
-  const increase = () => {
-    setQuantity((prev) => prev + 1);
-  };
-  const decrease = () => {
-    if (quantity > 1) {
-      setQuantity((prev) => prev - 1);
+  const [coupon, setCoupon] = useState("");
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
+
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  const shipping = cartItems.length > 0 ? 50 : 0;
+  const discount = isCouponApplied ? subtotal * 0.1 : 0;
+  const total = subtotal - discount + shipping;
+
+  const applyCoupon = () => {
+    if (coupon.trim().toUpperCase() === "GET10") {
+      setIsCouponApplied(true);
+      toast.success("Successfully applied coupon code");
+    } else {
+      setIsCouponApplied(false);
+      toast.error("Invalid coupon code");
     }
   };
+
   return (
     <>
-      <div className="ltn__utilize-overlay"></div>
       <div className="ltn__breadcrumb-area ltn__breadcrumb-area-4">
         <Container>
           <Row>
-            <Col lg={12}>
-              <div className="text-center">
-                <h1>Cart</h1>
-              </div>
+            <Col lg={12} className="text-center">
+              <h1>Cart</h1>
             </Col>
           </Row>
         </Container>
       </div>
+
       <div className="liton__shoping-cart-area mb-100">
         <Container>
           <Row>
@@ -46,75 +54,112 @@ const Cart = () => {
                     cartItems.map((item) => (
                       <tr key={item.id}>
                         <td>
-                          <Button variant="danger" size="sm"
-                            onClick={() => dispatch(removeFromCart(item.id))
+                          <Button
+                            variant="danger"
+                            size="sm"
+                            onClick={() =>
+                              dispatch(removeFromCart(item.id))
                             }
                           >
                             <Trash />
                           </Button>
                         </td>
+
                         <td>
-                          <Image src={item.thumbnail} alt={item.title} width="80" />
+                          <Image
+                            src={item.thumbnail}
+                            alt={item.title}
+                            width="80"
+                          />
                         </td>
+
                         <td>
                           <h5>{item.title}</h5>
                         </td>
+
+                        <td>₹ {item.price}</td>
+
                         <td>
-                          ₹ {item.price}
-                        </td>
-                        <td>
-                          <div className="d-flex align-items-center gap-2">
-                            <Button
-                              size="sm"
-                              className="theme-btn-1 btn btn-effect-1"
-                              style={{ border: "none" }}
-                              onClick={decrease}
+                          <InputGroup style={{ width: "120px" }}>
+                            <InputGroup.Text
+                              role="button"
+                              onClick={() => dispatch(decreaseQty(item.id))}
                             >
                               -
-                            </Button>
+                            </InputGroup.Text>
 
-                            <span>{quantity}</span>
+                            <Form.Control
+                              value={item.quantity}
+                              readOnly
+                              className="text-center"
+                            />
 
-                            <Button
-                              size="sm"
-                              className="theme-btn-1 btn btn-effect-1"
-                              style={{ border: "none" }}
-                              onClick={increase}
+                            <InputGroup.Text
+                              role="button"
+                              onClick={() => dispatch(increaseQty(item.id))}
                             >
                               +
-                            </Button>
-                          </div>
+                            </InputGroup.Text>
+                          </InputGroup>
+                        </td>
+
+                        <td>
+                          ₹ {(item.price * item.quantity).toFixed(2)}
                         </td>
                       </tr>
                     ))
                   ) : (
                     <tr>
-                      <td
-                        colSpan="6"
-                        className="text-center"
-                      >
-                        <h2> Cart is Empty</h2>
+                      <td colSpan="6" className="text-center">
+                        <h2>Cart is Empty</h2>
                       </td>
                     </tr>
                   )}
                 </tbody>
               </Table>
 
+              {/* Coupon */}
+              {cartItems.length > 0 && (
+                <div className="d-flex gap-2 mb-4">
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Coupon Code"
+                    value={coupon}
+                    onChange={(e) => setCoupon(e.target.value)}
+                  />
+
+                  <Button onClick={applyCoupon}>
+                    Apply Coupon
+                  </Button>
+                </div>
+              )}
+
+              {/* Cart Total */}
               <div className="shoping-cart-total mt-4">
                 <h4>Cart Totals</h4>
+
                 <Table>
                   <tbody>
                     <tr>
                       <td>Subtotal</td>
-                      <td>
-
-                      </td>
+                      <td>₹ {subtotal.toFixed(2)}</td>
                     </tr>
 
                     <tr>
                       <td>Shipping</td>
-                      <td>₹ 50.00</td>
+                      <td>₹ {shipping.toFixed(2)}</td>
                     </tr>
+
+                    {isCouponApplied && (
+                      <tr>
+                        <td style={{ color: "red" }}>
+                          Coupon Discount (10% OFF)
+                        </td>
+                        <td style={{ color: "red" }}>
+                          - ₹ {discount.toFixed(2)}
+                        </td>
+                      </tr>
+                    )}
 
                     <tr>
                       <td>
@@ -122,30 +167,29 @@ const Cart = () => {
                       </td>
                       <td>
                         <strong>
-
+                          ₹ {total.toFixed(2)}
                         </strong>
                       </td>
                     </tr>
                   </tbody>
                 </Table>
 
-                <div className="text-end">
-                  {cartItems.length > 0 && (
-                    <div className="text-end">
-                      <NavLink
-                        to="/checkout"
-                        className="theme-btn-1 btn btn-effect-1 mt-3"
-                        style={{ border: "none" }}
-                      >
-                        Proceed To Checkout
-                      </NavLink>
-                    </div>
-                  )}
-                </div>
+                {cartItems.length > 0 && (
+                  <div className="text-end">
+                    <NavLink
+                      to="/checkout"
+                      className="theme-btn-1 btn btn-effect-1 mt-3"
+                    >
+                      Proceed To Checkout
+                    </NavLink>
+                  </div>
+                )}
               </div>
             </Col>
           </Row>
         </Container>
+
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
     </>
   );
