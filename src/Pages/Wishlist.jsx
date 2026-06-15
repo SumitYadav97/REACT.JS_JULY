@@ -1,13 +1,19 @@
 import React from "react";
-import { Container, Row,Col,Table,Button, Image,} from "react-bootstrap";
+import { Container, Row, Col, Table, Button, Image, } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromWishlist } from "../store/slices/wishlistSlice";
-
+import { addToCart } from "../store/slices/cartSlice";
+import { toast, ToastContainer } from "react-toastify";
 const Wishlist = () => {
   const dispatch = useDispatch();
   const wishlistItems = useSelector((state) => state.wishlist.items
   );
+  const handleMoveToCart = (item) => {
+    dispatch(addToCart(item));
+    dispatch(removeFromWishlist(item.id));
+    toast.success("Item Moved to Cart Successfully")
+  };
 
   return (
     <>
@@ -51,7 +57,7 @@ const Wishlist = () => {
                         <th>Product</th>
                         <th>Price</th>
                         <th>Status</th>
-                       
+
                       </tr>
                     </thead>
 
@@ -89,10 +95,10 @@ const Wishlist = () => {
 
                             <td className="cart-product-image">
                               <Image src={item.thumbnail} alt={item.title} fluid style={{
-                                  width: "80px",
-                                  height: "80px",
-                                  objectFit: "cover",
-                                }}
+                                width: "80px",
+                                height: "80px",
+                                objectFit: "cover",
+                              }}
                               />
                             </td>
 
@@ -111,7 +117,13 @@ const Wishlist = () => {
                             </td>
 
                             <td>
-                             
+                              <Button
+                                className="theme-btn-1 btn btn-effect-1 mt-3"
+                                style={{ border: "none" }}
+                                onClick={() => handleMoveToCart(item)}
+                              >
+                                Move to Cart
+                              </Button>
                             </td>
                           </tr>
                         ))
@@ -121,7 +133,7 @@ const Wishlist = () => {
                 </div>
 
                 {/* Wishlist Total */}
-                {wishlistItems.length > 0 && (
+                {/* {wishlistItems.length > 0 && (
                   <div >
                     <h4>Wishlist Summary</h4>
                     <Table>
@@ -148,10 +160,11 @@ const Wishlist = () => {
                       </NavLink>
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
             </Col>
           </Row>
+          <ToastContainer/>
         </Container>
       </div>
     </>
