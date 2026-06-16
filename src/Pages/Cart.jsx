@@ -6,26 +6,25 @@ import { removeFromCart, increaseQty, decreaseQty, } from "../store/slices/cartS
 import { Trash } from "react-bootstrap-icons";
 import { toast, ToastContainer } from "react-toastify";
 import { FaMinus, FaPlus } from "react-icons/fa";
+
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
-
   const [coupon, setCoupon] = useState("");
-  const [isCouponApplied, setIsCouponApplied] = useState(false);
-
+  const [isCouponApplied, couponApplied] = useState(false);
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const shipping = cartItems.length > 0 ? 50 : 0;
-  const discount = isCouponApplied ? subtotal * 0.1 : 0;
+  const shipping = 50;
+  const discount = isCouponApplied ? subtotal * 0.1 : 0; //10% off
   const total = subtotal - discount + shipping;
   const applyCoupon = () => {
     if (coupon.trim().toUpperCase() === "GET10") {
-      setIsCouponApplied(true);
+      couponApplied(true);
       toast.success("Successfully applied coupon code");
     } else {
-      setIsCouponApplied(false);
+      couponApplied(false);
       toast.error("Invalid coupon code");
     }
   };
@@ -83,7 +82,7 @@ const Cart = () => {
                               role="button"
                               onClick={() => dispatch(decreaseQty(item.id))}
                             >
-                              <FaMinus/>
+                              <FaMinus />
                             </InputGroup.Text>
 
                             <Form.Control
@@ -96,7 +95,7 @@ const Cart = () => {
                               role="button"
                               onClick={() => dispatch(increaseQty(item.id))}
                             >
-                              <FaPlus/>
+                              <FaPlus />
                             </InputGroup.Text>
                           </InputGroup>
                         </td>
@@ -144,19 +143,17 @@ const Cart = () => {
 
                     <tr>
                       <td>Shipping</td>
-                      <td>₹ {shipping.toFixed(2)}</td>
+                      <td>₹ {shipping}</td>
                     </tr>
 
-                    {isCouponApplied && (
-                      <tr>
-                        <td style={{ color: "red" }}>
-                          Coupon Discount (10% OFF)
-                        </td>
-                        <td style={{ color: "red" }}>
-                          - ₹ {discount.toFixed(2)}
-                        </td>
-                      </tr>
-                    )}
+                    <tr>
+                      <td style={{ color: "red" }}>
+                        Coupon Discount (10% OFF)
+                      </td>
+                      <td style={{ color: "red" }}>
+                        - ₹ {discount.toFixed(2)}
+                      </td>
+                    </tr>
 
                     <tr>
                       <td>
