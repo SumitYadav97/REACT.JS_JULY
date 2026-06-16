@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, increaseQty, decreaseQty, } from "../store/slices/cartSlice";
 import { Trash } from "react-bootstrap-icons";
 import { toast, ToastContainer } from "react-toastify";
+import { FaMinus, FaPlus } from "react-icons/fa";
 const Cart = () => {
   const dispatch = useDispatch();
-
   const cartItems = useSelector((state) => state.cart.items);
 
   const [coupon, setCoupon] = useState("");
@@ -17,11 +17,9 @@ const Cart = () => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-
   const shipping = cartItems.length > 0 ? 50 : 0;
   const discount = isCouponApplied ? subtotal * 0.1 : 0;
   const total = subtotal - discount + shipping;
-
   const applyCoupon = () => {
     if (coupon.trim().toUpperCase() === "GET10") {
       setIsCouponApplied(true);
@@ -85,7 +83,7 @@ const Cart = () => {
                               role="button"
                               onClick={() => dispatch(decreaseQty(item.id))}
                             >
-                              -
+                              <FaMinus/>
                             </InputGroup.Text>
 
                             <Form.Control
@@ -98,7 +96,7 @@ const Cart = () => {
                               role="button"
                               onClick={() => dispatch(increaseQty(item.id))}
                             >
-                              +
+                              <FaPlus/>
                             </InputGroup.Text>
                           </InputGroup>
                         </td>
@@ -117,7 +115,6 @@ const Cart = () => {
                   )}
                 </tbody>
               </Table>
-
               {/* Coupon */}
               {cartItems.length > 0 && (
                 <div className="d-flex gap-2 mb-4">
